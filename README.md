@@ -1,0 +1,2 @@
+# quicknessbuildprojectforandroid
+一个快速构建Android的库以及各种工具的集成
