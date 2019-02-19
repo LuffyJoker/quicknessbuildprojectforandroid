@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 /**
  * Created by Mr.Q on 2019/2/16.
  * 描述：
+ *      1、Fragment 最顶层抽象类，继承自 supportV4 包 Fragment，扩展以支持额外配置
+ *      2、ARouter 注入
+ *      3、键盘事件处理
+ *      4、parentActivity 持有
  */
 public abstract class AbsBaseFragment extends Fragment {
 

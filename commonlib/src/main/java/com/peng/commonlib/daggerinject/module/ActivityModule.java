@@ -9,6 +9,7 @@ import dagger.android.ContributesAndroidInjector;
  * Created by Mr.Q on 2019/2/15.
  * 描述：
  *  @Module 用于提供类的实例
+ *  Activity 依赖提供者，由 AppModule 引用
  */
 
 @Module
