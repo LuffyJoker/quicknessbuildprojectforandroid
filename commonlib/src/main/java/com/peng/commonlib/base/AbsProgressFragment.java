@@ -1,6 +1,6 @@
 package com.peng.commonlib.base;
 
-import com.peng.commonlib.mvp.MVPProgressView;
+import com.peng.commonlib.mvp.view.MVPProgressView;
 
 /**
  * Created by Mr.Q on 2019/2/20.

@@ -1,4 +1,4 @@
-package com.peng.commonlib.mvp;
+package com.peng.commonlib.mvp.view;
 
 import android.arch.lifecycle.LifecycleOwner;
 

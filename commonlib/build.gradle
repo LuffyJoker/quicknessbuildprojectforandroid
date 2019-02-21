@@ -64,4 +64,15 @@ dependencies {
         exclude group: 'io.reactivex.rxjava2'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+
+    implementation("com.jakewharton.rxrelay2:rxrelay:2.1.0") {
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    }
+
+    // database
+    annotationProcessor "android.arch.persistence.room:runtime:1.1.1"
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+    implementation "android.arch.persistence.room:compiler:1.1.1"
+    // debug database
+    debugImplementation "com.amitshekhar.android:debug-db:1.0.4"
 }

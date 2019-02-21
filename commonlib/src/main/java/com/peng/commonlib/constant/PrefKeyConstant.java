@@ -7,4 +7,5 @@ package com.peng.commonlib.constant;
  */
 public class PrefKeyConstant {
     public static final String NETWORK_IS_AVAILABLE = "network_is_available";
+    public static final String QUESTION = "question";
 }

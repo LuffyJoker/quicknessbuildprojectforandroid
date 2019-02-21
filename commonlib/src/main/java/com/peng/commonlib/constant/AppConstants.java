@@ -20,7 +20,7 @@ public class AppConstants {
      * @author pq
      * create at 2019/2/19
      */
-    public static final int APP_DB_VERSION_CODE = 1;
+    public static final int APP_DB_VERSION = 1;
 
     /**
      * 特殊分隔符，键盘中无法输入，主要用于字符串间的分隔，拼接多个字符串，字符串调用 split 函数时使用
