@@ -38,37 +38,37 @@ import android.graphics.Bitmap;
  */
 
 @Entity(
-        tableName = "User",
-        primaryKeys = {"id", "questionText"},
-        indices = {
-                @Index("name"),// 指定单个索引
-                @Index(value = {"last_name", "address"}, unique = true) // 指定多个索引，为了利用多个字段确定唯一性
-        },
-        foreignKeys = @ForeignKey(entity = Question.class, parentColumns = "id", childColumns = "user_id")
+        tableName = "User"
+//        primaryKeys = {"id", "questionText"},
+//        indices = {
+//                @Index("name"),// 指定单个索引
+//                @Index(value = {"last_name", "address"}, unique = true) // 指定多个索引，为了利用多个字段确定唯一性
+//        },
+//        foreignKeys = @ForeignKey(entity = Question.class, parentColumns = "id", childColumns = "user_id")
 )
 public class User {
 
-    public User(String id, int age) {
+    public User(Long id, int age) {
         this.id = id;
         this.age = age;
     }
 
     @PrimaryKey(autoGenerate = true)
-    public String id;
+    public Long id;
 
     public int age;
 
-    public String firstName;
-
-    public String lastName;
-
-    @Ignore
-    Bitmap picture;
-
-    public String street;
-    public String state;
-    public String city;
-
-    @ColumnInfo(name = "post_code")
-    public int postCode;
+//    public String firstName;
+//
+//    public String lastName;
+//
+//    @Ignore
+//    Bitmap picture;
+//
+//    public String street;
+//    public String state;
+//    public String city;
+//
+//    @ColumnInfo(name = "post_code")
+//    public int postCode;
 }

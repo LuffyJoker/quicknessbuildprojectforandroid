@@ -13,7 +13,7 @@ public interface IUserRepo {
 
     Completable insertOrUpdate(String goodsGuid, String remark);
 
-    Completable queryUserByUserId(String userID, int age);
+    Completable queryUserByUserId(Long userID, int age);
 
     Maybe<User> queryRemarkByGoodsGuid(String goodsGuid);
 }

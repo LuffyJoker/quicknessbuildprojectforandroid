@@ -6,7 +6,9 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.peng.commonlib.database.converter.DateConverter;
 import com.peng.commonlib.database.dao.QuestionDao;
+import com.peng.commonlib.database.dao.UserDao;
 import com.peng.commonlib.database.entity.Question;
+import com.peng.commonlib.database.entity.User;
 
 /**
  * Created by Mr.Q on 2019/2/21.
@@ -20,11 +22,11 @@ import com.peng.commonlib.database.entity.Question;
 @Database(
         entities = {
                 Question.class,
+                User.class,
 //                EmployeeUser.class,
 //                EnvironmentInfo.class,
 //                Enterprise.class,
 //                Store.class,
-//                User.class,
 //                Perm.class,
 //                Dish.class,
 //                DishType.class,
@@ -34,12 +36,13 @@ import com.peng.commonlib.database.entity.Question;
 //                PaymentType.class,
 //                GoodsRemarks.class //商品的备注
         },
-        version = 9,
+        version = 1,
         exportSchema = false
 )
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract QuestionDao questionDao();
+    public abstract UserDao userDao();
 
 //    /**
 //     * 获取员工信息实体的Dao操作对象

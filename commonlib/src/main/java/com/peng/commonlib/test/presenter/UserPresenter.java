@@ -13,16 +13,15 @@ import io.reactivex.Completable;
  */
 public class UserPresenter<V extends TestContract.View, I extends TestContract.Interactor> extends BasePresenter<V,I> implements TestContract.Presenter<V,I>{
 
-    private I interactor;
+    public I interactor;
 
     @Inject
     public UserPresenter(I interactor) {
-//        super(interactor);
         this.interactor = interactor;
     }
 
     @Override
-    public Completable queryUserByUserID(String id, int age) {
+    public Completable queryUserByUserID(Long id, int age) {
         return interactor.queryUserByUserID(id,age);
     }
 }

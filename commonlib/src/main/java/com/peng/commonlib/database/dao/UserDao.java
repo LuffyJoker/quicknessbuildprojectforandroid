@@ -1,11 +1,6 @@
 package com.peng.commonlib.database.dao;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
+import android.arch.persistence.room.*;
 import android.database.Cursor;
 
 import com.peng.commonlib.database.entity.NameTuple;
@@ -13,9 +8,6 @@ import com.peng.commonlib.database.entity.User;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
-import dagger.Provides;
 import io.reactivex.Flowable;
 
 /**
@@ -86,7 +78,7 @@ public interface UserDao{
      * create at 2019/2/21
      */
     @Query("SELECT * FROM User WHERE id = :userID")
-    User queryUserByUserId(String userID);
+    User queryUserByUserId(Long userID);
 
     /**
      * 查询 User 表，User 为表名，在创建 User 类时，用@Entity(tableName = "User")
@@ -116,25 +108,25 @@ public interface UserDao{
     @Query("SELECT * FROM user WHERE age BETWEEN :minAge AND :maxAge")
     User[] loadAllUsersBetweenAges(int minAge, int maxAge);
 
-    /**
-     * 模糊查询，firstName 或者 lastName 包含 search 即可
-     *
-     * @author pq
-     * create at 2019/2/21
-     */
-    @Query("SELECT * FROM user WHERE firstName LIKE :search " + "OR lastName LIKE :search")
-    List<User> findUserWithName(String search);
+//    /**
+//     * 模糊查询，firstName 或者 lastName 包含 search 即可
+//     *
+//     * @author pq
+//     * create at 2019/2/21
+//     */
+//    @Query("SELECT * FROM user WHERE firstName LIKE :search " + "OR lastName LIKE :search")
+//    List<User> findUserWithName(String search);
 
-    /**
-     * 如果只需要获取实体的少数几个字段
-     * 则查询 firstName、lastName 字段即可，用包含对应的对象的集合进行接收即可
-     * WHERE 是查询条件
-     *
-     * @author pq
-     * create at 2019/2/21
-     */
-    @Query("SELECT firstName, lastName FROM user WHERE region IN (:regions)")
-    List<NameTuple> loadUsersFromRegions(List<String> regions);
+//    /**
+//     * 如果只需要获取实体的少数几个字段
+//     * 则查询 firstName、lastName 字段即可，用包含对应的对象的集合进行接收即可
+//     * WHERE 是查询条件
+//     *
+//     * @author pq
+//     * create at 2019/2/21
+//     */
+//    @Query("SELECT firstName, lastName FROM user WHERE regions IN (:regions)")
+//    List<NameTuple> loadUsersFromRegions(List<String> regions);
 
     /**
      * RxJava2 支持，Flowable 为支持背压操作的被观察者

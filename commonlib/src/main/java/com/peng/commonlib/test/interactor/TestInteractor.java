@@ -14,17 +14,15 @@ import io.reactivex.Completable;
  */
 public class TestInteractor extends BaseInteractor implements TestContract.Interactor {
 
-    private UserRepository userRepository;
+    public UserRepository userRepository;
 
     @Inject
-    public TestInteractor(
-//            ApiHelper apiHelper,
-//            PreferenceHelper preferenceHelper,
-            UserRepository userRepository) {
+    public TestInteractor(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
-    public Completable queryUserByUserID(String id, int age) {
-        return userRepository.queryUserByUserId("123",123);
+    public Completable queryUserByUserID(Long id, int age) {
+        return userRepository.queryUserByUserId(123L,123);
     }
 }

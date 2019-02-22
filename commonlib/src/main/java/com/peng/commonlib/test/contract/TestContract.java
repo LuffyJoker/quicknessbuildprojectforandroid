@@ -22,13 +22,13 @@ public interface TestContract {
         /**
          * 通过guid查询备注
          */
-        Completable queryUserByUserID(String id, int age);
+        Completable queryUserByUserID(Long id, int age);
     }
 
     interface Interactor extends MVPInteractor{
         /**
          * 根据本地id获取商品
          */
-        Completable queryUserByUserID(String id, int age);
+        Completable queryUserByUserID(Long id, int age);
     }
 }

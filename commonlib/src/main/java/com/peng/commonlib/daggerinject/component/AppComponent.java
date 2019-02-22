@@ -2,7 +2,11 @@ package com.peng.commonlib.daggerinject.component;
 
 import com.peng.commonlib.BaseApplication;
 import com.peng.commonlib.daggerinject.module.ActivityModule;
+import com.peng.commonlib.daggerinject.module.AppModule;
+import com.peng.commonlib.daggerinject.module.DatabaseModule;
 import com.peng.commonlib.daggerinject.module.NetworkModule;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
@@ -18,11 +22,14 @@ import dagger.android.support.AndroidSupportInjectionModule;
  * void inject(MainActivity activity);
  * }
  */
+@Singleton
 @Component(modules = {
         ActivityModule.class,  // 用于绑定项目中的Activity
         AndroidSupportInjectionModule.class,  // 用于绑定扩展的组件，如v4
         AndroidInjectionModule.class, // 用于绑定普通的组件
-        NetworkModule.class}) // 网络层依赖提供者
+        NetworkModule.class, // 网络层依赖提供者
+        AppModule.class,// App 层相关对象提供者
+        DatabaseModule.class}) //数据库层
 public interface AppComponent extends AndroidInjector<BaseApplication> {
 
     @Component.Builder

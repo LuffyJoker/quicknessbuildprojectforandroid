@@ -15,7 +15,7 @@ import dagger.Provides;
 public class TestModule {
     @Provides
     TestContract.Interactor provideTestInteractor(TestInteractor testInteractor) {
-      return testInteractor;
+        return testInteractor;
     }
 
     @Provides

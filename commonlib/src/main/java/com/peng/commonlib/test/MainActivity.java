@@ -1,7 +1,9 @@
 package com.peng.commonlib.test;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.R;
 import com.peng.commonlib.base.AbsDaggerActivity;
 import com.peng.commonlib.database.AppDatabase;
@@ -11,8 +13,8 @@ import javax.inject.Inject;
 
 public class MainActivity extends AbsDaggerActivity {
 
-//    @Inject
-//    AppDatabase mAppDatabase;
+    @Inject
+    AppDatabase mAppDatabase;
 
     @Inject
     TestClass mTestClass; // 声明对象，注入到 MainActivity 中即可使用
@@ -22,7 +24,7 @@ public class MainActivity extends AbsDaggerActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-//        presenter.queryUserByUserID("123",123);
+
     }
 
     @Override
@@ -41,4 +43,8 @@ public class MainActivity extends AbsDaggerActivity {
     }
 
 
+    public void click(View view) {
+        LogUtils.d("123");
+        presenter.queryUserByUserID(123L,123);
+    }
 }

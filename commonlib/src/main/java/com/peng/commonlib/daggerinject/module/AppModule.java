@@ -14,7 +14,7 @@ import dagger.Provides;
  * Created by Mr.Q on 2019/2/19.
  * 描述：
  */
-@Module(includes = {ActivityModule.class, FragmentModule.class, DialogModule.class, ServiceModule.class, ReceiverModule.class, DatabaseModule.class})
+@Module(includes = {ActivityModule.class, FragmentModule.class, DialogModule.class, ServiceModule.class, ReceiverModule.class})
 public class AppModule {
     @Singleton
     @Provides
@@ -27,8 +27,5 @@ public class AppModule {
     public Context provideContext(BaseApplication app) {
         return app;
     }
-
-
-
 
 }

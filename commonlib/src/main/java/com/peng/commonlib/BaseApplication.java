@@ -1,6 +1,8 @@
 package com.peng.commonlib;
 
-import com.peng.commonlib.daggerinject.DaggerAppComponent;
+
+
+import com.peng.commonlib.daggerinject.component.DaggerAppComponent;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
