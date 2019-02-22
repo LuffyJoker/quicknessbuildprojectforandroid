@@ -11,7 +11,7 @@ import dagger.android.ContributesAndroidInjector;
  *      BroadcastReceiver 依赖提供者，由 AppModule 引用
  */
 @Module
-abstract class ReceiverModule {
+public abstract class ReceiverModule {
 
     @ContributesAndroidInjector()
     abstract NetworkChangeReceiver contributeNetworkChangeReceiver();

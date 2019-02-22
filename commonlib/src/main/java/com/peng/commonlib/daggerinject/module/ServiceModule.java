@@ -8,7 +8,7 @@ import dagger.Module;
  *      Service 依赖提供者，由 AppModule 依赖
  */
 @Module
-abstract  class ServiceModule {
+public abstract class ServiceModule {
 //    @PerService
 //    @ContributesAndroidInjector(modules = PrinterModule.class)
 //    abstract XXXService contributeXXXService();

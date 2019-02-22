@@ -13,6 +13,9 @@ import com.peng.commonlib.database.entity.User;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.Provides;
 import io.reactivex.Flowable;
 
 /**
@@ -29,7 +32,7 @@ import io.reactivex.Flowable;
  *      3、@Delete 注解的方法还可以返回 int，表示删除的行数
  */
 @Dao
-public interface UserDao {
+public interface UserDao{
 
     /**
      * 在插入操作加入冲突处理策略，如果是相同的项，则进行替换

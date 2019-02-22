@@ -7,6 +7,7 @@ import com.peng.commonlib.database.entity.User;
 
 import javax.inject.Inject;
 
+import dagger.Provides;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.functions.Action;
@@ -18,7 +19,7 @@ import io.reactivex.functions.Action;
  */
 public class UserRepository implements IUserRepo {
 
-    private UserDao userDao;
+    public UserDao userDao;
 
     @Inject
     public UserRepository(UserDao userDao) {

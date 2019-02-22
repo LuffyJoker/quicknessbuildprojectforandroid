@@ -21,7 +21,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 abstract class AbsDaggerFragment extends AbsBaseFragment implements HasSupportFragmentInjector {
 
     @Inject
-    private DispatchingAndroidInjector<Fragment> childFragmentInjector;
+    public DispatchingAndroidInjector<Fragment> childFragmentInjector;
 
     @Override
     public void onAttach(Context context) {

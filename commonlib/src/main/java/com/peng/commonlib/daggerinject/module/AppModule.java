@@ -18,13 +18,13 @@ import dagger.Provides;
 public class AppModule {
     @Singleton
     @Provides
-    Application provideApplication(BaseApplication app) {
+    public Application provideApplication(BaseApplication app) {
         return app;
     }
 
     @Singleton
     @Provides
-    Context provideContext(BaseApplication app) {
+    public Context provideContext(BaseApplication app) {
         return app;
     }
 

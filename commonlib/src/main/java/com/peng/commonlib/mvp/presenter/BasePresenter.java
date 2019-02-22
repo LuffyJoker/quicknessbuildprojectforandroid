@@ -14,11 +14,6 @@ public abstract class BasePresenter<V extends MVPView, I extends MVPInteractor> 
 
     private I interactor;
 
-    @Inject
-    public BasePresenter(I interactor) {
-        this.interactor = interactor;
-    }
-
     protected V view = null;
 
     private Boolean isViewAttached(){

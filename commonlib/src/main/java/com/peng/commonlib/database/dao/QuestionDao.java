@@ -24,7 +24,7 @@ public interface QuestionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Question> question);
 
-    @Query("SELECT * FROM questions")
+    @Query("SELECT * FROM question")
     Flowable<List<Question>> loadAll();
 
 }

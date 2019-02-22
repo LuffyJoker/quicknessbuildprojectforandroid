@@ -29,7 +29,7 @@ public class DateConverter {
     }
 
     @TypeConverter
-    String date2String(Date date) {
+    public String date2String(Date date) {
         String time = String.valueOf(date.getTime());
         return time;
     }

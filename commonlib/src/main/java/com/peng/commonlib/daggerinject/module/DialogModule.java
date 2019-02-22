@@ -8,7 +8,7 @@ import dagger.Module;
  *  DialogFragment 依赖提供者，由 AppModule 依赖
  */
 @Module
-abstract class DialogModule {
+public abstract class DialogModule {
 //    @ContributesAndroidInjector()
 //    abstract XXXDialogFragment contributeXXXDialogFragment();
 }

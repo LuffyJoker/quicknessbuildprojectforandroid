@@ -17,8 +17,8 @@ public class UserPresenter<V extends TestContract.View, I extends TestContract.I
 
     @Inject
     public UserPresenter(I interactor) {
-        super(interactor);
-
+//        super(interactor);
+        this.interactor = interactor;
     }
 
     @Override

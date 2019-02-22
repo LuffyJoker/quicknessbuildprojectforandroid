@@ -8,7 +8,7 @@ import dagger.Module;
  * Fragment 依赖提供者，由 AppModule 引用
  */
 @Module
-abstract class FragmentModule {
+public abstract class FragmentModule {
 //    @ContributesAndroidInjector(modules = XXXModule.class)
 //    abstract XXXFragment contributeXXXFragment();
 }
