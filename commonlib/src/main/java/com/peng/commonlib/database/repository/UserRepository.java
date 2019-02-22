@@ -40,11 +40,9 @@ public class UserRepository implements IUserRepo {
             public void run() {
                 User user = userDao.queryUserByUserId(userID);
                 if (ObjectUtils.isEmpty(user)) {
-                    LogUtils.d("对象为空：  id:" + user.id + "年龄" + user.age);
                     User bean = new User(userID, age);
                     userDao.insertUsers(bean);
                 } else {
-                    LogUtils.d("对象存在：  id:" + user.id + "年龄" + user.age);
                     ToastUtils.showShort(String.valueOf(user.id + user.age));
                 }
             }

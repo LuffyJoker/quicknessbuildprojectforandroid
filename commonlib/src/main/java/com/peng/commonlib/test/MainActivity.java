@@ -7,9 +7,13 @@ import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.R;
 import com.peng.commonlib.base.AbsDaggerActivity;
 import com.peng.commonlib.database.AppDatabase;
+import com.peng.commonlib.database.entity.User;
+import com.peng.commonlib.rx.RxSchedulers;
 import com.peng.commonlib.test.contract.TestContract;
 
 import javax.inject.Inject;
+
+import io.reactivex.functions.Action;
 
 public class MainActivity extends AbsDaggerActivity {
 
@@ -45,6 +49,11 @@ public class MainActivity extends AbsDaggerActivity {
 
     public void click(View view) {
         LogUtils.d("123");
-        presenter.queryUserByUserID(123L,123);
+        presenter.queryUserByUserID(123L,123).compose(RxSchedulers.ioToMainScheduler()).subscribe(new Action() {
+            @Override
+            public void run() throws Exception {
+                LogUtils.d("执行订阅");
+            }
+        });
     }
 }
