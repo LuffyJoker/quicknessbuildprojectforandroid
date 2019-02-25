@@ -8,4 +8,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 给窗体指定特定背景图，让 window 显示，解决启动白屏,替换 windowBackground 指定的图片即可 -->
+    <style name="AppAssignBgTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/launcher</item>
+        <item name="android:windowNoTitle">true</item>//无标题
+        <item name="android:windowActionBar">false</item>//无ActionBar
+        <item name="android:windowFullscreen">true</item>//全屏即无通知栏
+        <item name="android:windowContentOverlay">@null</item>//是否有遮盖
+    </style>
+
+    <!-- 布局加载 loadingLayout 参数-->
+    <declare-styleable name="LoadingLayout">
+        <attr name="loadingView" format="reference" />
+        <attr name="errorView" format="reference" />
+        <attr name="retryView" format="reference" />
+        <attr name="emptyView" format="reference" />
+        <attr name="titleDes" format="reference|string" />
+        <attr name="contentDes" format="reference|string" />
+    </declare-styleable>
+
+    <!-- RecyclerView 的最大高度属性 -->
+    <declare-styleable name="MaxHeightRecyclerView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
 </resources>

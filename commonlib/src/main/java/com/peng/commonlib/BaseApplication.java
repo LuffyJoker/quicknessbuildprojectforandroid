@@ -1,6 +1,8 @@
 package com.peng.commonlib;
 
 
+import android.content.Context;
+import android.content.res.Resources;
 
 import com.peng.commonlib.daggerinject.component.DaggerAppComponent;
 
@@ -16,8 +18,26 @@ import dagger.android.support.DaggerApplication;
  *      dagger.android.support.DaggerApplication：支持扩展组件，不支持普通组件
  */
 public class BaseApplication extends DaggerApplication {
+
+    private static BaseApplication baseApplication;
+
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
         return DaggerAppComponent.builder().create(this);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        baseApplication = this;
+
+    }
+
+    public static Context getAppContext() {
+        return baseApplication;
+    }
+
+    public static Resources getAppResources() {
+        return baseApplication.getResources();
     }
 }

@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">CommonLib</string>
+    <string name="app_name">Mr.Q</string>
+
+    <!-- 页面异常 -->
+    <string name="retry">重试</string>
+    <string name="can_not_connect_net">无法连接到网络</string>
+    <string name="please_check_net_config_or_retry">请检查网络配置或稍后重试</string>
+    <string name="have_not_add_table">还未添加桌台</string>
+    <string name="please_go_to_background_to_config_tables">请到后台配置桌台信息</string>
+    <string name="do_not_order_dish">没有已点菜品</string>
+    <string name="please_add_dish">请添加菜品</string>
+
 </resources>
