@@ -1,6 +1,5 @@
 package com.peng.commonlib.database.repository;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.peng.commonlib.database.dao.UserDao;
@@ -8,7 +7,6 @@ import com.peng.commonlib.database.entity.User;
 
 import javax.inject.Inject;
 
-import dagger.Provides;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.functions.Action;
@@ -16,7 +14,7 @@ import io.reactivex.functions.Action;
 /**
  * Created by Mr.Q on 2019/2/21.
  * 描述：
- * 查询数据的仓库
+ *      查询数据的仓库
  */
 public class UserRepository implements IUserRepo {
 

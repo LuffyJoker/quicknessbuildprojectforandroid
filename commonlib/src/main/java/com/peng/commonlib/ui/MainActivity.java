@@ -1,4 +1,4 @@
-package com.peng.commonlib.test;
+package com.peng.commonlib.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,9 +7,8 @@ import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.R;
 import com.peng.commonlib.base.AbsDaggerActivity;
 import com.peng.commonlib.database.AppDatabase;
-import com.peng.commonlib.database.entity.User;
 import com.peng.commonlib.rx.RxSchedulers;
-import com.peng.commonlib.test.contract.TestContract;
+import com.peng.commonlib.ui.contract.TestContract;
 
 import javax.inject.Inject;
 
