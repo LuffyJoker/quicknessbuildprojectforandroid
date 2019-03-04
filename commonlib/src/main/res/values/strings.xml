@@ -10,4 +10,6 @@
     <string name="do_not_order_dish">没有已点菜品</string>
     <string name="please_add_dish">请添加菜品</string>
 
+    <string name="app_name">CommonLib</string>
+    <string name="loading">加载中...</string>
 </resources>

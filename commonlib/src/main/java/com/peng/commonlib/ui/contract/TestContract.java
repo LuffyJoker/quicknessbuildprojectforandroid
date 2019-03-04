@@ -1,4 +1,4 @@
-package com.peng.commonlib.test.contract;
+package com.peng.commonlib.ui.contract;
 
 import com.peng.commonlib.mvp.interactor.MVPInteractor;
 import com.peng.commonlib.mvp.presenter.MVPPresenter;

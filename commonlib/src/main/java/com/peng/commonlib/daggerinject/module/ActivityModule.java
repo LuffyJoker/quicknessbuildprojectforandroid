@@ -1,7 +1,7 @@
 package com.peng.commonlib.daggerinject.module;
 
-import com.peng.commonlib.test.MainActivity;
-import com.peng.commonlib.test.module.TestModule;
+import com.peng.commonlib.ui.MainActivity;
+import com.peng.commonlib.ui.module.TestModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
