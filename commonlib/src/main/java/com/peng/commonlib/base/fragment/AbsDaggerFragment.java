@@ -1,7 +1,9 @@
-package com.peng.commonlib.base;
+package com.peng.commonlib.base.fragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+
+import com.peng.commonlib.base.fragment.AbsBaseFragment;
 
 import javax.inject.Inject;
 

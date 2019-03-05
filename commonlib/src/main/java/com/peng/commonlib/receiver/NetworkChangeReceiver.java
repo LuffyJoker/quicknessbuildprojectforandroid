@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.peng.commonlib.event.NetworkChangeEvent;
-import com.peng.commonlib.rx.RxBus;
+import com.peng.commonlib.rx.rxbus.RxBus;
 
 /**
  * Created by Mr.Q on 2019/2/19.

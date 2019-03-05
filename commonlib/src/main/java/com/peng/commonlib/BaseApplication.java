@@ -1,10 +1,15 @@
 package com.peng.commonlib;
 
-
 import android.content.Context;
 import android.content.res.Resources;
+import android.text.TextUtils;
 
+import com.blankj.utilcode.util.Utils;
 import com.peng.commonlib.daggerinject.component.DaggerAppComponent;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
@@ -26,13 +31,6 @@ public class BaseApplication extends DaggerApplication {
         return DaggerAppComponent.builder().create(this);
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        baseApplication = this;
-
-    }
-
     public static Context getAppContext() {
         return baseApplication;
     }
@@ -40,4 +38,45 @@ public class BaseApplication extends DaggerApplication {
     public static Resources getAppResources() {
         return baseApplication.getResources();
     }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        baseApplication = this;
+
+        // 初始化工具类
+        Utils.init(this);
+    }
+
+
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 }

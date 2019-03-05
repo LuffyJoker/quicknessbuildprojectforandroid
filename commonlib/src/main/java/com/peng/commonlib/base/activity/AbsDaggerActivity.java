@@ -1,4 +1,4 @@
-package com.peng.commonlib.base;
+package com.peng.commonlib.base.activity;
 
 import android.app.Fragment;
 import android.os.Bundle;

@@ -155,38 +155,38 @@ public class DialogOptions {
         // 计算 dialogView 的横坐标
         switch (verticalPosition) {
             case ABOVE:
-                if (width != 0) {
-                    dialogViewY = viewX - width;
+                if (height != 0) {
+                    dialogViewY = viewY - height;
                 } else {
-                    dialogViewY = viewX - (dialogViewWidth + horizontalOffset);
+                    dialogViewY = viewY - (dialogViewHeight + verticalOffset);
                 }
                 break;
             case ALIGN_BOTTOM:
-                if (width != 0) {
-                    dialogViewY = viewX + viewWidth - width + horizontalOffset;
+                if (height != 0) {
+                    dialogViewY = viewY + viewHeight - height + verticalOffset;
                 } else {
-                    dialogViewY = viewX + viewWidth - (dialogViewWidth + horizontalOffset);
+                    dialogViewY = viewY + viewHeight - (dialogViewHeight + verticalOffset);
                 }
                 break;
             case CENTER:
-                if (width != 0) {
-                    dialogViewY = viewX - width;
+                if (height != 0) {
+                    dialogViewY = viewY - height;
                 } else {
-                    dialogViewY = viewX - (dialogViewWidth + horizontalOffset);
+                    dialogViewY = viewY - (dialogViewHeight + verticalOffset);
                 }
                 break;
             case ALIGN_TOP:
-                if (width != 0) {
-                    dialogViewY = viewX - width;
+                if (height != 0) {
+                    dialogViewY = viewX - height;
                 } else {
-                    dialogViewY = viewX - (dialogViewWidth + horizontalOffset);
+                    dialogViewY = viewX - (dialogViewHeight + verticalOffset);
                 }
                 break;
             case BELOW:
-                if (width != 0) {
-                    dialogViewY = viewX - width;
+                if (height != 0) {
+                    dialogViewY = viewX - height;
                 } else {
-                    dialogViewY = viewX - (dialogViewWidth + horizontalOffset);
+                    dialogViewY = viewX - (dialogViewHeight + verticalOffset);
                 }
                 break;
         }

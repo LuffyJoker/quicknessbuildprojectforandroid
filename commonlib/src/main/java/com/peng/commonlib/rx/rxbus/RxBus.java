@@ -1,4 +1,4 @@
-package com.peng.commonlib.rx;
+package com.peng.commonlib.rx.rxbus;
 
 import com.jakewharton.rxrelay2.PublishRelay;
 import com.jakewharton.rxrelay2.Relay;

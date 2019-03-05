@@ -1,8 +1,4 @@
-package com.peng.commonlib.ui.module;
-
-import com.peng.commonlib.ui.contract.TestContract;
-import com.peng.commonlib.ui.interactor.TestInteractor;
-import com.peng.commonlib.ui.presenter.UserPresenter;
+package com.peng.commonlib.ui.demo;
 
 import dagger.Module;
 import dagger.Provides;

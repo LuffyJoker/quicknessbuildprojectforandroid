@@ -1,4 +1,4 @@
-package com.peng.commonlib.base;
+package com.peng.commonlib.base.fragment;
 
 import com.peng.commonlib.mvp.view.MVPProgressView;
 

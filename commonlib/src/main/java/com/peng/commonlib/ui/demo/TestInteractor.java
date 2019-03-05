@@ -1,8 +1,8 @@
-package com.peng.commonlib.ui.interactor;
+package com.peng.commonlib.ui.demo;
 
 import com.peng.commonlib.database.repository.UserRepository;
 import com.peng.commonlib.mvp.interactor.BaseInteractor;
-import com.peng.commonlib.ui.contract.TestContract;
+import com.peng.commonlib.ui.demo.TestContract;
 
 import javax.inject.Inject;
 

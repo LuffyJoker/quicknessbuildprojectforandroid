@@ -5,10 +5,10 @@ import android.view.View;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.R;
-import com.peng.commonlib.base.AbsDaggerActivity;
+import com.peng.commonlib.base.activity.AbsDaggerActivity;
 import com.peng.commonlib.database.AppDatabase;
-import com.peng.commonlib.rx.RxSchedulers;
-import com.peng.commonlib.ui.contract.TestContract;
+import com.peng.commonlib.rx.threadswitch.TransformerFactory;
+import com.peng.commonlib.ui.demo.TestContract;
 
 import javax.inject.Inject;
 
@@ -48,11 +48,14 @@ public class MainActivity extends AbsDaggerActivity {
 
     public void click(View view) {
         LogUtils.d("123");
-        presenter.queryUserByUserID(123L,123).compose(RxSchedulers.ioToMainScheduler()).subscribe(new Action() {
-            @Override
-            public void run() throws Exception {
-                LogUtils.d("执行订阅");
-            }
-        });
+        presenter.queryUserByUserID(123L, 123)
+                .compose(TransformerFactory.ioToMain())
+                .compose(bindToLifecycle())
+                .subscribe(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        LogUtils.d("执行订阅");
+                    }
+                });
     }
 }

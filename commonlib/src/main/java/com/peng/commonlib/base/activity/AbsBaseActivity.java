@@ -1,16 +1,17 @@
-package com.peng.commonlib.base;
+package com.peng.commonlib.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
+import com.peng.commonlib.base.fragment.AbsBaseFragment;
 import com.peng.commonlib.manager.ActivityManager;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 /**
  * Created by Mr.Q on 2019/2/16.
  * 描述：
  */
-public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBaseFragment.CallBack {
+public abstract class AbsBaseActivity extends RxAppCompatActivity implements AbsBaseFragment.CallBack {
 
     @Override
     public void onFragmentAttached() {
@@ -61,7 +62,9 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBa
      * @author pq
      * create at 2019/2/16
      */
-    protected abstract void injection();
+    protected void injection(){
+//        ARouter.getInstance().inject(this);
+    }
 
     /**
      * 提供视图布局Id, 如果 [.initView] 返回 0, 框架则不会调用 [Activity.setContentView]

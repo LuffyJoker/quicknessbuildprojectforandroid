@@ -9,7 +9,9 @@
     <string name="please_go_to_background_to_config_tables">请到后台配置桌台信息</string>
     <string name="do_not_order_dish">没有已点菜品</string>
     <string name="please_add_dish">请添加菜品</string>
-
-    <string name="app_name">CommonLib</string>
     <string name="loading">加载中...</string>
+
+    <!-- 异常 -->
+    <string name="no_net">网络不可用,请检查你的网络</string>
+    <string name="net_error">网络访问错误，请稍后再试</string>
 </resources>

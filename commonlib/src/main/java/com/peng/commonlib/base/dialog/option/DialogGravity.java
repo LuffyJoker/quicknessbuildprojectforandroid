@@ -9,8 +9,6 @@ import android.view.Gravity;
  */
 public enum DialogGravity {
 
-    NO_GRAVITY(Gravity.NO_GRAVITY),
-
     LEFT_TOP(Gravity.START | Gravity.TOP),
 
     CENTER_TOP(Gravity.CENTER_HORIZONTAL | Gravity.TOP),

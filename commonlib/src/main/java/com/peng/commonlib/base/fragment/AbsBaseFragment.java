@@ -1,4 +1,4 @@
-package com.peng.commonlib.base;
+package com.peng.commonlib.base.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.peng.commonlib.base.activity.AbsBaseActivity;
 
 /**
  * Created by Mr.Q on 2019/2/16.
