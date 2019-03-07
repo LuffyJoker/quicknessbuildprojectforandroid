@@ -93,8 +93,7 @@ public class NetworkModule {
     @Provides
     public Retrofit provideRetrofit(
             OkHttpClient okHttpClient,
-            CallAdapter.Factory callAdapterFactory,
-            Converter.Factory converterFactory) {
+            CallAdapter.Factory callAdapterFactory) {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.HOST)
@@ -109,13 +108,6 @@ public class NetworkModule {
     CallAdapter.Factory provideCallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
-
-//    @Singleton
-//    @Provides
-//    public Converter.Factory provideConverterFactory(JSON json, EnvironmentRepo environmentRepo) {
-//        MediaType contentType = MediaType.parse("application/json");
-//        return stringBased(contentType, json::parse, json::stringify, environmentRepo);
-//    }
 
     @Singleton
     @Provides
