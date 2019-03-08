@@ -19,8 +19,6 @@ public class MainActivity extends AbsDaggerActivity {
     @Inject
     AppDatabase mAppDatabase;
 
-    @Inject
-    TestClass mTestClass; // 声明对象，注入到 MainActivity 中即可使用
 
     @Inject
     TestContract.Presenter<TestContract.View, TestContract.Interactor> presenter;
@@ -32,7 +30,7 @@ public class MainActivity extends AbsDaggerActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        mTestClass.print();
+
     }
 
     @Override
@@ -45,12 +43,10 @@ public class MainActivity extends AbsDaggerActivity {
         return R.layout.activity_main;
     }
 
-
     public void click(View view) {
         LogUtils.d("123");
         presenter.queryUserByUserID(123L, 123)
                 .compose(TransformerFactory.ioToMain())
-                .compose(bindToLifecycle())
                 .subscribe(new Action() {
                     @Override
                     public void run() throws Exception {

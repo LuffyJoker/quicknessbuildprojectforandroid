@@ -6,6 +6,7 @@ import dagger.Provides;
 /**
  * Created by Mr.Q on 2019/2/22.
  * 描述：
+ *      Dagger:提供对象实例层
  */
 @Module
 public class TestModule {
@@ -15,7 +16,7 @@ public class TestModule {
     }
 
     @Provides
-    TestContract.Presenter<TestContract.View, TestContract.Interactor> provideTestPresenter(UserPresenter<TestContract.View, TestContract.Interactor> testPresenter) {
+    TestContract.Presenter<TestContract.View, TestContract.Interactor> provideTestPresenter(TestPresenter<TestContract.View, TestContract.Interactor> testPresenter) {
         return testPresenter;
     }
 }

@@ -16,6 +16,9 @@ import com.peng.commonlib.R;
 /**
  * Created by Mr.Q on 2019/2/23.
  * 描述：
+ *      1、视图加载层级，Error、Empty、Data、Loading，根据请求返回结果，显示不同的层级
+ *      2、使用该自定义View作为布局的根布局，并调用相关方法设置显示那一层即可
+ *          eg、loadingLayout.showData();
  */
 public class LoadingLayout extends FrameLayout {
 
