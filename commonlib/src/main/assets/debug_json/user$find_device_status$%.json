@@ -1,0 +1,20 @@
+{
+  "code": 0,
+  "message": "成功",
+  "now": 0,
+  "tdata": {
+    "enterpriseGuid": "6506431195651982337",
+    "storeNo": "7628846",
+    "storeGuid": "6506453252643487745",
+    "storeName": "门店001",
+    "deviceNo": "T105184V00062",
+    "deviceGuid": "123456",
+    "binding": 1,
+    "deviceType": 3,
+    "sort": 1,
+    "createUserGuid": "123456",
+    "createUserName": "测试员工",
+    "gmtCreateTime": "2018-09-09 15:25:10",
+    "gmtModifyTime": "2018-09-27 18:21:26"
+  }
+}

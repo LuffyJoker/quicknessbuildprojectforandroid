@@ -5,16 +5,16 @@ import android.view.View;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.R;
-import com.peng.commonlib.base.activity.AbsDaggerActivity;
 import com.peng.commonlib.database.AppDatabase;
 import com.peng.commonlib.rx.threadswitch.TransformerFactory;
+import com.peng.commonlib.ui.base.activity.AbsDaggerActivity;
 import com.peng.commonlib.ui.demo.TestContract;
 
 import javax.inject.Inject;
 
 import io.reactivex.functions.Action;
 
-public class MainActivity extends AbsDaggerActivity {
+public class MainActivity extends AbsDaggerActivity implements TestContract.View {
 
     @Inject
     AppDatabase mAppDatabase;
@@ -30,7 +30,7 @@ public class MainActivity extends AbsDaggerActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
+        presenter.onAttach(this);
     }
 
     @Override
@@ -50,8 +50,50 @@ public class MainActivity extends AbsDaggerActivity {
                 .subscribe(new Action() {
                     @Override
                     public void run() throws Exception {
-                        LogUtils.d("执行订阅");
+//                        LogUtils.d("执行订阅");
                     }
                 });
+
+        presenter.fetchBindingState();
+    }
+
+    @Override
+    public void success() {
+
+    }
+
+    @Override
+    public void fail() {
+
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void showErrorMsg(CharSequence msg) {
+
+    }
+
+    @Override
+    public void showUnauthorized(String msg) {
+
+    }
+
+    @Override
+    public void showInvalidAccountRecord() {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

@@ -1,12 +1,11 @@
 package com.peng.commonlib.daggerinject.module;
 
-
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.peng.commonlib.BuildConfig;
 import com.peng.commonlib.constant.NamedConstant;
+import com.peng.commonlib.interceptor.MockInterceptor;
 import com.peng.commonlib.network.ApiHelper;
 
 import java.security.KeyManagementException;
@@ -28,10 +27,9 @@ import javax.net.ssl.X509TrustManager;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
-import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -59,12 +57,51 @@ public class NetworkModule {
 
     @Singleton
     @Provides
+    @Named(NamedConstant.MOCK_INTERCEPTOR)
+    Interceptor provideMockInterceptor() {
+        return new MockInterceptor();
+    }
+
+//    @Singleton
+//    @Provides
+//    @Named(NamedConstant.HEADER_INTERCEPTOR)
+//    Interceptor provideHeaderInterceptor(EnvironmentRepo environmentRepo, JSON json){
+//        return new HeaderInterceptor(environmentRepo, json);
+//    }
+//
+//    @Singleton
+//    @Provides
+//    @Named(NamedConstant.QUERY_PARAM_INTERCEPTOR)
+//    Interceptor provideQueryParamInterceptor(){
+//        return new QueryParamInterceptor();
+//    }
+//
+//    @Singleton
+//    @Provides
+//    @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR)
+//    Interceptor provideHttpLoggingInterceptor() {
+//        val logger = new LoggingInterceptor.Logger {
+//            override fun log(message: String) {
+//                Logger.t("OkHttp").d(message)
+//            }
+//        }
+//        LoggingInterceptor loggingInterceptor = new LoggingInterceptor(logger);
+//        return LoggingInterceptor(logger).apply { level = LoggingInterceptor.Level.BODY }
+//    }
+
+    @Singleton
+    @Provides
     public OkHttpClient provideOkHttpClient(
 
-            @Named(NamedConstant.MOCK_INTERCEPTOR) Interceptor mockInterceptor,
-            @Named(NamedConstant.HEADER_INTERCEPTOR) Interceptor headerInterceptor,
-            @Named(NamedConstant.QUERY_PARAM_INTERCEPTOR) Interceptor queryParamInterceptor,
-            @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR) Interceptor httpLoggingInterceptor) {
+            @Named(NamedConstant.MOCK_INTERCEPTOR) Interceptor mockInterceptor
+//            @Named(NamedConstant.HEADER_INTERCEPTOR) Interceptor headerInterceptor,
+//            @Named(NamedConstant.QUERY_PARAM_INTERCEPTOR) Interceptor queryParamInterceptor,
+//            @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR) Interceptor httpLoggingInterceptor
+    ) {
+
+        //开启Log
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -75,10 +112,10 @@ public class NetworkModule {
             // TODO 加密 Interceptor 测试可用后才能启用
 //            builder.addInterceptor(EncryptionInterceptor())
             builder.addInterceptor(mockInterceptor);
-            builder.addInterceptor(headerInterceptor);
-            builder.addInterceptor(queryParamInterceptor);
-            builder.addInterceptor(httpLoggingInterceptor);
-            builder.networkInterceptors().add(new StethoInterceptor());//可利用chrome对HTTP进行拦截显示
+//            builder.addInterceptor(headerInterceptor);
+//            builder.addInterceptor(queryParamInterceptor);
+            builder.addInterceptor(logInterceptor);
+//            builder.networkInterceptors().add(new StethoInterceptor());//可利用chrome对HTTP进行拦截显示
             // TODO 网络Interceptor实现之后再启用
 //            builder.addNetworkInterceptor(NetworkInterceptor())
         }
@@ -127,7 +164,7 @@ public class NetworkModule {
     /**
      * SSLSocket、拓展 Socket,提供使用 SS L或 TLS 协议的安全套接字，是基于Socket 的，但是添加了安全保护层
      * SSLSocketFactory、抽象类，扩展自 SocketFactory，是 SSLSocket 的工厂
-     * 
+     *
      * @author pq
      * create at 2019/2/24
      */
@@ -136,8 +173,9 @@ public class NetworkModule {
         TrustManager[] trustAllCerts = new TrustManager[1];
         trustAllCerts[0] = trustManager;
         try {
-            SSLContext.getInstance("SSL").init(null, trustAllCerts, new SecureRandom());
-            return SSLContext.getInstance("SSL").getSocketFactory();
+            SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new SecureRandom());
+            return sslContext.getSocketFactory();
         } catch (KeyManagementException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {

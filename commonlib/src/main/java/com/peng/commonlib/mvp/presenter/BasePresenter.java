@@ -16,7 +16,7 @@ public abstract class BasePresenter<V extends MVPView, I extends MVPInteractor> 
 
     protected V view = null;
 
-    private Boolean isViewAttached(){
+    private Boolean isViewAttached() {
         return view != null;
     }
 

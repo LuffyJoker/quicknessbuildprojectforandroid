@@ -3,11 +3,10 @@ package com.peng.commonlib.rx;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.NetworkUtils;
-import com.peng.commonlib.base.activity.AbsBaseActivity;
-import com.peng.commonlib.mvp.view.MVPProgressView;
+import com.peng.commonlib.ui.base.activity.AbsBaseActivity;
+import com.peng.commonlib.ui.base.view.MVPProgressView;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -29,7 +28,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
      *
      * @param mvpProgressView
      */
-    protected BaseObserver(MVPProgressView mvpProgressView) {
+    public BaseObserver(MVPProgressView mvpProgressView) {
         this.mvpProgressView = mvpProgressView;
     }
 
@@ -38,7 +37,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
      *
      * @param mBaseActivity
      */
-    protected BaseObserver(AbsBaseActivity mBaseActivity) {
+    public BaseObserver(AbsBaseActivity mBaseActivity) {
         this.mActivity = mBaseActivity;
     }
 

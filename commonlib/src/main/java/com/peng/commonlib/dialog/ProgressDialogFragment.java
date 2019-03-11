@@ -2,7 +2,8 @@ package com.peng.commonlib.dialog;
 
 import android.os.Bundle;
 
-import com.peng.commonlib.base.dialog.AbsBaseDialogFragment;
+import com.peng.commonlib.ui.base.dialog.AbsBaseDialogFragment;
+
 
 /**
  * Created by Mr.Q on 2019/2/20.

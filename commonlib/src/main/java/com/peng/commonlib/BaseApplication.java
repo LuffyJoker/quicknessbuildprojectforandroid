@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.blankj.utilcode.util.Utils;
 import com.peng.commonlib.daggerinject.component.DaggerAppComponent;
+import com.peng.commonlib.network.HttpDebugUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,9 +19,9 @@ import dagger.android.support.DaggerApplication;
 /**
  * Created by Mr.Q on 2019/2/15.
  * 描述：
- *  1、DaggerApplication 来源于支持库且有两个：
- *      dagger.android.DaggerApplication：支持普通组件，不支持扩展（v4，v7）组件
- *      dagger.android.support.DaggerApplication：支持扩展组件，不支持普通组件
+ * 1、DaggerApplication 来源于支持库且有两个：
+ * dagger.android.DaggerApplication：支持普通组件，不支持扩展（v4，v7）组件
+ * dagger.android.support.DaggerApplication：支持扩展组件，不支持普通组件
  */
 public class BaseApplication extends DaggerApplication {
 
@@ -47,6 +48,11 @@ public class BaseApplication extends DaggerApplication {
 
         // 初始化工具类
         Utils.init(this);
+
+        //开启http调试模式(上线前记得关闭)
+        if (BuildConfig.DEBUG) {
+            HttpDebugUtils.init(true);
+        }
     }
 
 

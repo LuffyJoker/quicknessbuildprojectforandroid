@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.blankj.utilcode.util.FragmentUtils;
-import com.peng.commonlib.base.dialog.BaseDialogFragment;
 import com.peng.commonlib.dialog.SpecChanageConfirmDialogFragment;
 import com.peng.commonlib.dialog.TerminalDialogFragment;
+import com.peng.commonlib.ui.base.dialog.BaseDialogFragment;
 
 /**
  * create by Mr.Q on 2019/3/5.

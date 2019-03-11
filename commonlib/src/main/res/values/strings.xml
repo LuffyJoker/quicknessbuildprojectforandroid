@@ -14,4 +14,13 @@
     <!-- 异常 -->
     <string name="no_net">网络不可用,请检查你的网络</string>
     <string name="net_error">网络访问错误，请稍后再试</string>
+    <string name="message_network_error">网络错误</string>
+    <string name="message_connect_failure">连接失败</string>
+    <string name="message_connect_timeout">连接超时</string>
+    <string name="message_io_exception">IO异常</string>
+    <string name="message_parse_error">解析失败</string>
+    <string name="message_null_pointer">空指针异常</string>
+    <string name="message_network_on_main_thread">主线程耗时操作</string>
+    <string name="message_cancellation">已取消请求</string>
+
 </resources>

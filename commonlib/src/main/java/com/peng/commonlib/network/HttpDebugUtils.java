@@ -39,7 +39,7 @@ public class HttpDebugUtils {
     private static Boolean debug = null;
 
     /**
-     * 初始化,注意：这个初始化只会在 [BuildConfig.DEBUG] 为 true 的情况下生效，线上版本是强制不生效的
+     * 初始化，注意：这个初始化只会在 [BuildConfig.DEBUG] 为 true 的情况下生效，线上版本是强制不生效的
      */
     public static void init(boolean debug) {
         if (HttpDebugUtils.debug != null) {
@@ -133,29 +133,29 @@ public class HttpDebugUtils {
             String jsonFile = null; //json文件名称
             int isFindOk = 0; //用于判断是否成功匹配
             for (String path : paths) {
-                String[] pathSplit = path.split(".")[0].split("$");
+                String[] pathSplit = path.split("\\.")[0].split("\\$");
                 isFindOk = 0;
-                if (pathSplit.length == urlPathArray.length){
+                if (pathSplit.length == urlPathArray.length) {
 
                     for (int i = 0; i < pathSplit.length; i++) {
-                        if (pathSplit[i] == urlPathArray[i] || "%" == pathSplit[i]){
+                        if (pathSplit[i].equals(urlPathArray[i]) || "%".equals(pathSplit[i])) {
                             isFindOk++; //每次匹配一项就会自增1
                         }
                     }
 
-                    if (isFindOk == urlPathArray.length){
+                    if (isFindOk == urlPathArray.length) {
                         //将asset文件转为绝对路径
-                        jsonFile = "${dir}/${path}";
+                        jsonFile = dir + "/" + path;
                     }
                 }
             }
 
             if (jsonFile == null) {
-                return null; //没有找到指定接口的本地调试数据
+                throw new IllegalAccessException("HttpDebugUtils 没有找到指定接口的本地调试数据");
             }
             inp = BaseApplication.getAppResources().getAssets().open(jsonFile);
             stringBuf = new BufferedReader(new InputStreamReader(inp, "UTF-8"));
-            while ((tempStr = stringBuf.readLine()) != null){
+            while ((tempStr = stringBuf.readLine()) != null) {
                 strBuf.append(tempStr);
             }
         } catch (Exception e) {
@@ -167,11 +167,11 @@ public class HttpDebugUtils {
         } finally {
             try {
                 inp.close();
-            } catch (Exception e){
+            } catch (Exception e) {
             }
             try {
                 stringBuf.close();
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
         return strBuf.toString();
