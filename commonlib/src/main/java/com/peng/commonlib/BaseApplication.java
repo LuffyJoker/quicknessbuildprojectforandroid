@@ -51,7 +51,7 @@ public class BaseApplication extends DaggerApplication {
 
         //开启http调试模式(上线前记得关闭)
         if (BuildConfig.DEBUG) {
-            HttpDebugUtils.init(true);
+            HttpDebugUtils.init(false);
         }
     }
 

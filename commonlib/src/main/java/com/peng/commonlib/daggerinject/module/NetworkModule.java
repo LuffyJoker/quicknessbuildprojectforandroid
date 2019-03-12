@@ -1,11 +1,15 @@
 package com.peng.commonlib.daggerinject.module;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.peng.commonlib.BuildConfig;
 import com.peng.commonlib.constant.NamedConstant;
-import com.peng.commonlib.interceptor.MockInterceptor;
+import com.peng.commonlib.database.repository.environment.EnvironmentRepo;
+import com.peng.commonlib.network.interceptor.HeaderInterceptor;
+import com.peng.commonlib.network.interceptor.LoggingInterceptor;
+import com.peng.commonlib.network.interceptor.MockInterceptor;
 import com.peng.commonlib.network.ApiHelper;
 
 import java.security.KeyManagementException;
@@ -28,7 +32,6 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -76,32 +79,31 @@ public class NetworkModule {
 //        return new QueryParamInterceptor();
 //    }
 //
-//    @Singleton
-//    @Provides
-//    @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR)
-//    Interceptor provideHttpLoggingInterceptor() {
-//        val logger = new LoggingInterceptor.Logger {
-//            override fun log(message: String) {
-//                Logger.t("OkHttp").d(message)
-//            }
-//        }
-//        LoggingInterceptor loggingInterceptor = new LoggingInterceptor(logger);
-//        return LoggingInterceptor(logger).apply { level = LoggingInterceptor.Level.BODY }
-//    }
+    @Singleton
+    @Provides
+    @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR)
+    Interceptor provideHttpLoggingInterceptor() {
+        LoggingInterceptor.Logger logger = new LoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                LogUtils.d(message);
+            }
+        };
+        LoggingInterceptor loggingInterceptor = new LoggingInterceptor(logger);
+        loggingInterceptor.level = LoggingInterceptor.Level.BODY;
+        return loggingInterceptor;
+    }
 
     @Singleton
     @Provides
     public OkHttpClient provideOkHttpClient(
 
-            @Named(NamedConstant.MOCK_INTERCEPTOR) Interceptor mockInterceptor
-//            @Named(NamedConstant.HEADER_INTERCEPTOR) Interceptor headerInterceptor,
+            @Named(NamedConstant.MOCK_INTERCEPTOR) Interceptor mockInterceptor,
+            @Named(NamedConstant.HEADER_INTERCEPTOR) Interceptor headerInterceptor,
 //            @Named(NamedConstant.QUERY_PARAM_INTERCEPTOR) Interceptor queryParamInterceptor,
-//            @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR) Interceptor httpLoggingInterceptor
+            @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR) Interceptor httpLoggingInterceptor
     ) {
 
-        //开启Log
-        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
-        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -114,7 +116,7 @@ public class NetworkModule {
             builder.addInterceptor(mockInterceptor);
 //            builder.addInterceptor(headerInterceptor);
 //            builder.addInterceptor(queryParamInterceptor);
-            builder.addInterceptor(logInterceptor);
+            builder.addInterceptor(httpLoggingInterceptor);
 //            builder.networkInterceptors().add(new StethoInterceptor());//可利用chrome对HTTP进行拦截显示
             // TODO 网络Interceptor实现之后再启用
 //            builder.addNetworkInterceptor(NetworkInterceptor())

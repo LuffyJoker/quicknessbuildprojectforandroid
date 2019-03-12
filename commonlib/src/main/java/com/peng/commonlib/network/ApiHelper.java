@@ -23,7 +23,7 @@ public interface ApiHelper {
      * 分为未注册、已注册未绑定、已注册已绑定三种情况
      * [deviceNo] 厂商设备编号  (driverId)
      */
-    @Headers(value = HTTP_DEBUG_HEADER)
+//    @Headers(value = HTTP_DEBUG_HEADER)
     @GET("user/find_device_status/{deviceNo}")
     Single<Resp<FindDeviceStatusNew>> fetchBindingState(@Path("deviceNo") String deviceNo);
 }
