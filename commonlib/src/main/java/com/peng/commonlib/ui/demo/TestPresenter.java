@@ -1,19 +1,16 @@
 package com.peng.commonlib.ui.demo;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.peng.commonlib.constant.RespCode;
 import com.peng.commonlib.mvp.presenter.BasePresenter;
-
 import com.peng.commonlib.network.entity.FindDeviceStatusNew;
 import com.peng.commonlib.network.entity.Resp;
-import com.peng.commonlib.rx.ApiException;
-import com.peng.commonlib.rx.observer.DistributeProgressSingleObserver;
-import com.peng.commonlib.rx.threadswitch.TransformerFactory;
 
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
-import io.reactivex.functions.Function;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Mr.Q on 2019/2/22.
@@ -36,38 +33,18 @@ public class TestPresenter<V extends TestContract.View, I extends TestContract.I
     @Override
     public void fetchBindingState() {
         interactor.fetchBindingState()
-                .map(new Function<Resp<FindDeviceStatusNew>, FindDeviceStatusNew>() {
+                .enqueue(new Callback<Resp<FindDeviceStatusNew>>() {
                     @Override
-                    public FindDeviceStatusNew apply(Resp<FindDeviceStatusNew> findDeviceStatusNewResp) throws Exception {
-                        if (findDeviceStatusNewResp.code == RespCode.SUCCESS) {
-                            return findDeviceStatusNewResp.data;
-                        }
-                        throw new ApiException(findDeviceStatusNewResp.code, findDeviceStatusNewResp.msg);
-                    }
-                })
-                .compose(TransformerFactory.ioToMain())
-                .subscribe(new DistributeProgressSingleObserver(view, true, true) {
-                    @Override
-                    public void success(Object response) {
-                        LogUtils.d(response);
+                    public void onResponse(Call<Resp<FindDeviceStatusNew>> call, Response<Resp<FindDeviceStatusNew>> response) {
+                        //数据请求成功
+                        LogUtils.d(response.body().data);
                     }
 
                     @Override
-                    public void failure(int code, String msg) {
-                        LogUtils.d("失败：" + code + "   " + msg);
+                    public void onFailure(Call<Resp<FindDeviceStatusNew>> call, Throwable t) {
+                        //数据请求失败
+                        LogUtils.d(t);
                     }
                 });
-//                .subscribe(new BaseObserver<FindDeviceStatusNew>(view) {
-//                    @Override
-//                    protected void onSuccess(FindDeviceStatusNew findDeviceStatusNew) {
-//
-//                    }
-//
-//                    @Override
-//                    protected void onFail(String message) {
-//
-//                    }
-//                });
-
     }
 }

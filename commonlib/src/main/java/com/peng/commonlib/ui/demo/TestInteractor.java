@@ -11,7 +11,9 @@ import com.peng.commonlib.network.entity.Resp;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
+import retrofit2.Call;
 
 /**
  * Created by Mr.Q on 2019/2/22.
@@ -34,7 +36,7 @@ public class TestInteractor extends BaseInteractor implements TestContract.Inter
     }
 
     @Override
-    public Single<Resp<FindDeviceStatusNew>> fetchBindingState() {
-        return mApiHelper.fetchBindingState("123");
+    public Call<Resp<FindDeviceStatusNew>> fetchBindingState() {
+        return mApiHelper.fetchBindingState("B481EC12F76B7BA663E6D2735E9B45B6");
     }
 }

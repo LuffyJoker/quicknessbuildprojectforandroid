@@ -4,7 +4,8 @@ package com.peng.commonlib.network;
 import com.peng.commonlib.network.entity.FindDeviceStatusNew;
 import com.peng.commonlib.network.entity.Resp;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
@@ -24,6 +25,6 @@ public interface ApiHelper {
      * [deviceNo] 厂商设备编号  (driverId)
      */
 //    @Headers(value = HTTP_DEBUG_HEADER)
-    @GET("user/find_device_status/{deviceNo}")
-    Single<Resp<FindDeviceStatusNew>> fetchBindingState(@Path("deviceNo") String deviceNo);
+    @GET("device/find_device_status/{deviceNo}")
+    Call<Resp<FindDeviceStatusNew>> fetchBindingState(@Path("deviceNo") String deviceNo);
 }

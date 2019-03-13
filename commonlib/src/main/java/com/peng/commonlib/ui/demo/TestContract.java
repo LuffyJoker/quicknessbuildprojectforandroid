@@ -8,7 +8,9 @@ import com.peng.commonlib.network.entity.Resp;
 import com.peng.commonlib.ui.base.view.MVPOnDistributeActionTerminalProgress;
 
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
+import retrofit2.Call;
 
 /**
  * Created by Mr.Q on 2019/2/22.
@@ -46,8 +48,6 @@ public interface TestContract {
         /**
          * 查询设备绑定状态
          */
-        Single<Resp<FindDeviceStatusNew>> fetchBindingState();
-
-
+        Call<Resp<FindDeviceStatusNew>> fetchBindingState();
     }
 }

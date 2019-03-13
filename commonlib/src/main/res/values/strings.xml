@@ -23,4 +23,7 @@
     <string name="message_network_on_main_thread">主线程耗时操作</string>
     <string name="message_cancellation">已取消请求</string>
 
+    <!-- 提示 -->
+    <string name="invalid_response">请提供有效的业务Response(Resp业务实体)，或使用原生Observer</string>
+
 </resources>

@@ -9,6 +9,7 @@ import com.peng.commonlib.BuildConfig;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import okhttp3.MediaType;
 import okhttp3.Protocol;
@@ -34,9 +35,9 @@ public class HttpDebugUtils {
     public static final String DEBUT_HEARD_VALUE = "Single interface debug mode is turned on";
 
     /**
-     * 是否开启调试模式,T：开启，F：关闭
+     * 是否开启调试模式，T：开启，F：关闭
      */
-    private static Boolean debug = null;
+    private static AtomicBoolean debug = null;
 
     /**
      * 初始化，注意：这个初始化只会在 [BuildConfig.DEBUG] 为 true 的情况下生效，线上版本是强制不生效的
@@ -49,8 +50,8 @@ public class HttpDebugUtils {
                 e.printStackTrace();
             }
         }
-        HttpDebugUtils.debug = BuildConfig.DEBUG && debug;
-        if (HttpDebugUtils.debug) {
+        HttpDebugUtils.debug = new AtomicBoolean(BuildConfig.DEBUG && debug);
+        if (HttpDebugUtils.debug.get()) {
             Log.e("HTTP_DEBUG", "http调试模式状态【打开】");
         } else {
             Log.e("HTTP_DEBUG", "http调试模式状态【关闭】");
@@ -68,7 +69,7 @@ public class HttpDebugUtils {
                 e.printStackTrace();
             }
         }
-        return debug.booleanValue();
+        return debug.get();
     }
 
     /**
@@ -81,7 +82,7 @@ public class HttpDebugUtils {
             return null; //如果非调试模式，那么调试将不生效
         }
         for (String name : request.headers().names()) {
-            if (DEBUT_HEARD == name) {
+            if (DEBUT_HEARD.equals(name)) {
                 return createResponse(request);
             }
         }

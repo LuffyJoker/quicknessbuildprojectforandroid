@@ -6,6 +6,7 @@ package com.peng.commonlib.network.entity;
  */
 public class FindDeviceStatusNew {
 
+
     /**
      * code : 0
      * message : 成功

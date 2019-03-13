@@ -1,17 +1,19 @@
 package com.peng.commonlib.daggerinject.module;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.peng.commonlib.BaseApplication;
 import com.peng.commonlib.BuildConfig;
 import com.peng.commonlib.constant.NamedConstant;
-import com.peng.commonlib.database.repository.environment.EnvironmentRepo;
+import com.peng.commonlib.network.ApiHelper;
 import com.peng.commonlib.network.interceptor.HeaderInterceptor;
 import com.peng.commonlib.network.interceptor.LoggingInterceptor;
 import com.peng.commonlib.network.interceptor.MockInterceptor;
-import com.peng.commonlib.network.ApiHelper;
 
+import java.io.File;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -30,6 +32,7 @@ import javax.net.ssl.X509TrustManager;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
@@ -65,13 +68,14 @@ public class NetworkModule {
         return new MockInterceptor();
     }
 
-//    @Singleton
-//    @Provides
-//    @Named(NamedConstant.HEADER_INTERCEPTOR)
-//    Interceptor provideHeaderInterceptor(EnvironmentRepo environmentRepo, JSON json){
-//        return new HeaderInterceptor(environmentRepo, json);
-//    }
-//
+    @Singleton
+    @Provides
+    @Named(NamedConstant.HEADER_INTERCEPTOR)
+    Interceptor provideHeaderInterceptor() {
+        return new HeaderInterceptor();
+    }
+
+    //
 //    @Singleton
 //    @Provides
 //    @Named(NamedConstant.QUERY_PARAM_INTERCEPTOR)
@@ -83,15 +87,20 @@ public class NetworkModule {
     @Provides
     @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR)
     Interceptor provideHttpLoggingInterceptor() {
+
+        // 重写 日志拦截器日志打印方式
         LoggingInterceptor.Logger logger = new LoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
+                // 这一行，可以调用自己喜欢的日志打印工具进行打印
                 LogUtils.d(message);
             }
         };
-        LoggingInterceptor loggingInterceptor = new LoggingInterceptor(logger);
-        loggingInterceptor.level = LoggingInterceptor.Level.BODY;
-        return loggingInterceptor;
+
+        // 开启 Log
+        LoggingInterceptor logInterceptor = new LoggingInterceptor(logger);
+        logInterceptor.setLevel(LoggingInterceptor.Level.BODY);
+        return logInterceptor;
     }
 
     @Singleton
@@ -101,7 +110,8 @@ public class NetworkModule {
             @Named(NamedConstant.MOCK_INTERCEPTOR) Interceptor mockInterceptor,
             @Named(NamedConstant.HEADER_INTERCEPTOR) Interceptor headerInterceptor,
 //            @Named(NamedConstant.QUERY_PARAM_INTERCEPTOR) Interceptor queryParamInterceptor,
-            @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR) Interceptor httpLoggingInterceptor
+            @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR) Interceptor httpLoggingInterceptor,
+            Cache cache
     ) {
 
 
@@ -113,33 +123,55 @@ public class NetworkModule {
         if (BuildConfig.DEBUG) {
             // TODO 加密 Interceptor 测试可用后才能启用
 //            builder.addInterceptor(EncryptionInterceptor())
+
             builder.addInterceptor(mockInterceptor);
-//            builder.addInterceptor(headerInterceptor);
-//            builder.addInterceptor(queryParamInterceptor);
+            builder.addInterceptor(headerInterceptor);
             builder.addInterceptor(httpLoggingInterceptor);
-//            builder.networkInterceptors().add(new StethoInterceptor());//可利用chrome对HTTP进行拦截显示
+
+//            builder.addInterceptor(queryParamInterceptor);
+            builder.networkInterceptors().add(new StethoInterceptor());//可利用chrome对HTTP进行拦截显示
             // TODO 网络Interceptor实现之后再启用
 //            builder.addNetworkInterceptor(NetworkInterceptor())
         }
         // 信任所有 Https 证书。因为服务端是 CA 证书，肯定安全，所以直接信任就行了。
         builder.sslSocketFactory(sslSocketFactory(), trustManager);
         builder.hostnameVerifier(hostnameVerifier);
+        builder.cache(cache);// 加入okHttp缓存功能
 
         return builder.build();
     }
+
 
     @Singleton
     @Provides
     public Retrofit provideRetrofit(
             OkHttpClient okHttpClient,
-            CallAdapter.Factory callAdapterFactory) {
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
+            CallAdapter.Factory callAdapterFactory,
+            GsonConverterFactory gsonConverterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.HOST)
                 .client(okHttpClient)
-                .addCallAdapterFactory(callAdapterFactory)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+//                .addCallAdapterFactory(callAdapterFactory)
+                .addConverterFactory(gsonConverterFactory)
                 .build();
+    }
+
+    @Singleton
+    @Provides
+    GsonConverterFactory provideGsonConverterFactory() {
+        // 为了避免使用 Gson 时遇到 locale 时间格式影响 Date 格式的问题，使用 GsonBuilder 来创建 Gson 对象，
+        // 在创建过程中调用 GsonBuilder.setDateFormat(String) 指定一个固定的格式即可。
+//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
+        return GsonConverterFactory.create();
+    }
+
+    @Singleton
+    @Provides
+    Cache provideCache() {
+        //缓存
+        File cacheFile = new File(BaseApplication.getAppContext().getCacheDir(), "cache");
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+        return cache;
     }
 
     @Singleton

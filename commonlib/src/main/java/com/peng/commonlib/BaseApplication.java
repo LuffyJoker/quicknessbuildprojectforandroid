@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.text.TextUtils;
 
 import com.blankj.utilcode.util.Utils;
+import com.facebook.stetho.Stetho;
 import com.peng.commonlib.daggerinject.component.DaggerAppComponent;
 import com.peng.commonlib.network.HttpDebugUtils;
 
@@ -52,6 +53,11 @@ public class BaseApplication extends DaggerApplication {
         //开启http调试模式(上线前记得关闭)
         if (BuildConfig.DEBUG) {
             HttpDebugUtils.init(false);
+        }
+
+        //初始化Stetho，利用chrome查看网络请求
+        if (BuildConfig.DEBUG){
+            Stetho.initializeWithDefaults(this);
         }
     }
 
