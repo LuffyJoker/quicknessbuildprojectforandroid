@@ -4,28 +4,26 @@ import com.peng.commonlib.database.repository.UserRepository;
 import com.peng.commonlib.mvp.interactor.BaseInteractor;
 
 import com.peng.commonlib.network.ApiHelper;
-import com.peng.commonlib.network.entity.FindDeviceStatusNew;
+import com.peng.commonlib.network.entity.DemoEntity;
 import com.peng.commonlib.network.entity.Resp;
 
 
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.Call;
 
 /**
  * Created by Mr.Q on 2019/2/22.
  * 描述：
  */
-public class TestInteractor extends BaseInteractor implements TestContract.Interactor {
+public class DemoInteractor extends BaseInteractor implements DemoContract.Interactor {
 
     public UserRepository userRepository;
     private ApiHelper mApiHelper;
 
     @Inject
-    public TestInteractor(UserRepository userRepository,ApiHelper apiHelper) {
+    public DemoInteractor(UserRepository userRepository, ApiHelper apiHelper) {
         this.userRepository = userRepository;
         mApiHelper = apiHelper;
     }
@@ -36,7 +34,7 @@ public class TestInteractor extends BaseInteractor implements TestContract.Inter
     }
 
     @Override
-    public Call<Resp<FindDeviceStatusNew>> fetchBindingState() {
+    public Call<Resp<DemoEntity>> fetchBindingState() {
         return mApiHelper.fetchBindingState("B481EC12F76B7BA663E6D2735E9B45B6");
     }
 }

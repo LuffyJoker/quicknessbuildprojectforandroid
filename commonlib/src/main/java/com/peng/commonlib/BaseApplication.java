@@ -50,12 +50,12 @@ public class BaseApplication extends DaggerApplication {
         // 初始化工具类
         Utils.init(this);
 
-        //开启http调试模式(上线前记得关闭)
+        //开启 http 调试模式，是否使用 mock 数据，使用mock数据，则不会去服务器获取数据(上线前记得关闭)
         if (BuildConfig.DEBUG) {
             HttpDebugUtils.init(false);
         }
 
-        //初始化Stetho，利用chrome查看网络请求
+        // 初始化 Stetho，利用 chrome 查看网络请求
         if (BuildConfig.DEBUG){
             Stetho.initializeWithDefaults(this);
         }

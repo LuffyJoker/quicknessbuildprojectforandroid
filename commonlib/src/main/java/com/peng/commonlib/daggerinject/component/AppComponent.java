@@ -18,7 +18,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
  * 描述：
  *      1、注入了三个 module，这种方式省略了传统方式中的下列步骤
  *          @Component interface MainActivityComponent {
- *              void inject(MainActivity activity);
+ *              void inject(DemoActivity activity);
  *          }
  *      2、
  */

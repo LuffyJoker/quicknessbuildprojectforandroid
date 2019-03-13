@@ -8,20 +8,20 @@ import com.peng.commonlib.R;
 import com.peng.commonlib.database.AppDatabase;
 import com.peng.commonlib.rx.threadswitch.TransformerFactory;
 import com.peng.commonlib.ui.base.activity.AbsDaggerActivity;
-import com.peng.commonlib.ui.demo.TestContract;
+import com.peng.commonlib.ui.demo.DemoContract;
 
 import javax.inject.Inject;
 
 import io.reactivex.functions.Action;
 
-public class MainActivity extends AbsDaggerActivity implements TestContract.View {
+public class DemoActivity extends AbsDaggerActivity implements DemoContract.View {
 
     @Inject
     AppDatabase mAppDatabase;
 
 
     @Inject
-    TestContract.Presenter<TestContract.View, TestContract.Interactor> presenter;
+    DemoContract.Presenter<DemoContract.View, DemoContract.Interactor> presenter;
 
     @Override
     protected void initData(Bundle savedInstanceState) {

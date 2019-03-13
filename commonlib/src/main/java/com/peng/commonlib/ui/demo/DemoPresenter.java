@@ -2,7 +2,7 @@ package com.peng.commonlib.ui.demo;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.mvp.presenter.BasePresenter;
-import com.peng.commonlib.network.entity.FindDeviceStatusNew;
+import com.peng.commonlib.network.entity.DemoEntity;
 import com.peng.commonlib.network.entity.Resp;
 
 import javax.inject.Inject;
@@ -16,12 +16,12 @@ import retrofit2.Response;
  * Created by Mr.Q on 2019/2/22.
  * 描述：
  */
-public class TestPresenter<V extends TestContract.View, I extends TestContract.Interactor> extends BasePresenter<V, I> implements TestContract.Presenter<V, I> {
+public class DemoPresenter<V extends DemoContract.View, I extends DemoContract.Interactor> extends BasePresenter<V, I> implements DemoContract.Presenter<V, I> {
 
     public I interactor;
 
     @Inject
-    public TestPresenter(I interactor) {
+    public DemoPresenter(I interactor) {
         this.interactor = interactor;
     }
 
@@ -33,15 +33,15 @@ public class TestPresenter<V extends TestContract.View, I extends TestContract.I
     @Override
     public void fetchBindingState() {
         interactor.fetchBindingState()
-                .enqueue(new Callback<Resp<FindDeviceStatusNew>>() {
+                .enqueue(new Callback<Resp<DemoEntity>>() {
                     @Override
-                    public void onResponse(Call<Resp<FindDeviceStatusNew>> call, Response<Resp<FindDeviceStatusNew>> response) {
+                    public void onResponse(Call<Resp<DemoEntity>> call, Response<Resp<DemoEntity>> response) {
                         //数据请求成功
-                        LogUtils.d(response.body().data);
+                        LogUtils.d(response.body().tdata.getStoreName());
                     }
 
                     @Override
-                    public void onFailure(Call<Resp<FindDeviceStatusNew>> call, Throwable t) {
+                    public void onFailure(Call<Resp<DemoEntity>> call, Throwable t) {
                         //数据请求失败
                         LogUtils.d(t);
                     }

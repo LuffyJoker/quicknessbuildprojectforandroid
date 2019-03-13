@@ -11,7 +11,7 @@ import android.graphics.Bitmap;
 /**
  * Created by Mr.Q on 2019/2/21.
  *
- * 描述：测试数据库使用方法的类，即 Demo
+ * 描述：测试数据库使用方法的类，即 DemoEntity
  *      1、@Entity 用来注解实体类
  *      2、@Database 通过 entities 属性引用被 @Entity 注解的类，并利用该类的所有字段作为表的列名来创建表
  *      3、Room 默认使用类名作为表名，使用字段名作为列名，但是，可以通过 @Entity 的 tableName 属性指定表名

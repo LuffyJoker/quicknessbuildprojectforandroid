@@ -50,19 +50,6 @@ public class NetworkModule {
 
     @Singleton
     @Provides
-    public Gson provideGson() {
-        return new GsonBuilder()
-                //注意:此构建方式，必须显示的在你的对象中使用[@Expose]注解来暴露你的字段，否则不会被序列化
-                .excludeFieldsWithoutExposeAnnotation()
-                .setLenient()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss")
-//                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
-                .create();
-    }
-
-    @Singleton
-    @Provides
     @Named(NamedConstant.MOCK_INTERCEPTOR)
     Interceptor provideMockInterceptor() {
         return new MockInterceptor();
@@ -111,33 +98,25 @@ public class NetworkModule {
             @Named(NamedConstant.HEADER_INTERCEPTOR) Interceptor headerInterceptor,
 //            @Named(NamedConstant.QUERY_PARAM_INTERCEPTOR) Interceptor queryParamInterceptor,
             @Named(NamedConstant.HTTP_LOGGING_INTERCEPTOR) Interceptor httpLoggingInterceptor,
-            Cache cache
-    ) {
-
-
+            Cache cache) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS);
 
         if (BuildConfig.DEBUG) {
-            // TODO 加密 Interceptor 测试可用后才能启用
-//            builder.addInterceptor(EncryptionInterceptor())
-
-            builder.addInterceptor(mockInterceptor);
+            //builder.addInterceptor(EncryptionInterceptor()) 加密 Interceptor 测试可用后才能启用
             builder.addInterceptor(headerInterceptor);
             builder.addInterceptor(httpLoggingInterceptor);
-
+            builder.addInterceptor(mockInterceptor);
 //            builder.addInterceptor(queryParamInterceptor);
-            builder.networkInterceptors().add(new StethoInterceptor());//可利用chrome对HTTP进行拦截显示
-            // TODO 网络Interceptor实现之后再启用
-//            builder.addNetworkInterceptor(NetworkInterceptor())
+            builder.networkInterceptors().add(new StethoInterceptor());//可利用 chrome 对 HTTP 进行拦截显示，有时需要翻墙才能操作，很消耗性能，只在debug模式下才开启该功能
+            //builder.addNetworkInterceptor(NetworkInterceptor()) 网络Interceptor实现之后再启用
         }
         // 信任所有 Https 证书。因为服务端是 CA 证书，肯定安全，所以直接信任就行了。
         builder.sslSocketFactory(sslSocketFactory(), trustManager);
         builder.hostnameVerifier(hostnameVerifier);
         builder.cache(cache);// 加入okHttp缓存功能
-
         return builder.build();
     }
 
@@ -151,7 +130,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.HOST)
                 .client(okHttpClient)
-//                .addCallAdapterFactory(callAdapterFactory)
+                .addCallAdapterFactory(callAdapterFactory) // 将 call 包装成 Observable
                 .addConverterFactory(gsonConverterFactory)
                 .build();
     }
@@ -161,7 +140,7 @@ public class NetworkModule {
     GsonConverterFactory provideGsonConverterFactory() {
         // 为了避免使用 Gson 时遇到 locale 时间格式影响 Date 格式的问题，使用 GsonBuilder 来创建 Gson 对象，
         // 在创建过程中调用 GsonBuilder.setDateFormat(String) 指定一个固定的格式即可。
-//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
         return GsonConverterFactory.create();
     }
 

@@ -1,7 +1,7 @@
 package com.peng.commonlib.daggerinject.module;
 
-import com.peng.commonlib.ui.MainActivity;
-import com.peng.commonlib.ui.demo.TestModule;
+import com.peng.commonlib.ui.DemoActivity;
+import com.peng.commonlib.ui.demo.DemoModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -16,7 +16,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityModule {
 
-    @ContributesAndroidInjector(modules = {TestModule.class})
-    abstract MainActivity mainActivity();  // 绑定 xxxActivity，即将 XXXActivity 的实例绑定到注入框架中
+    @ContributesAndroidInjector(modules = {DemoModule.class})
+    abstract DemoActivity mainActivity();  // 绑定 xxxActivity，即将 XXXActivity 的实例绑定到注入框架中
 
 }

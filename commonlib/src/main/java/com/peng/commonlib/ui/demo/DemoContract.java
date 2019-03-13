@@ -3,13 +3,11 @@ package com.peng.commonlib.ui.demo;
 import com.peng.commonlib.mvp.interactor.MVPInteractor;
 import com.peng.commonlib.mvp.presenter.MVPPresenter;
 
-import com.peng.commonlib.network.entity.FindDeviceStatusNew;
+import com.peng.commonlib.network.entity.DemoEntity;
 import com.peng.commonlib.network.entity.Resp;
 import com.peng.commonlib.ui.base.view.MVPOnDistributeActionTerminalProgress;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.Call;
 
 /**
@@ -17,7 +15,7 @@ import retrofit2.Call;
  * 描述：
  * 聚合 View、Presenter、Interactor 进行统一管理
  */
-public interface TestContract {
+public interface DemoContract {
 
     interface View extends MVPOnDistributeActionTerminalProgress {
         void success();
@@ -48,6 +46,6 @@ public interface TestContract {
         /**
          * 查询设备绑定状态
          */
-        Call<Resp<FindDeviceStatusNew>> fetchBindingState();
+        Call<Resp<DemoEntity>> fetchBindingState();
     }
 }
