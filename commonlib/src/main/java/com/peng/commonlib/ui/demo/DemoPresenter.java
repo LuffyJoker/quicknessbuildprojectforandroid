@@ -15,6 +15,7 @@ import retrofit2.Response;
 /**
  * Created by Mr.Q on 2019/2/22.
  * 描述：
+ *      presenter 层使用方式示例
  */
 public class DemoPresenter<V extends DemoContract.View, I extends DemoContract.Interactor> extends BasePresenter<V, I> implements DemoContract.Presenter<V, I> {
 

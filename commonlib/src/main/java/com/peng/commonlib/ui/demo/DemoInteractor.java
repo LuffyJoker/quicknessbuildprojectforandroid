@@ -16,6 +16,7 @@ import retrofit2.Call;
 /**
  * Created by Mr.Q on 2019/2/22.
  * 描述：
+ *      在该类中，使用了@Inject 注解，表示将userRepository、mApiHelper 类的实例注入到该类中
  */
 public class DemoInteractor extends BaseInteractor implements DemoContract.Interactor {
 
