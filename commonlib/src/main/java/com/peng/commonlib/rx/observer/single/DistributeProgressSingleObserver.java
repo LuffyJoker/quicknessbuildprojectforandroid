@@ -17,11 +17,9 @@ public abstract class DistributeProgressSingleObserver<T> extends ProgressSingle
     private boolean mShowProgress = true;
     private boolean mHideProgress = true;
 
-    public DistributeProgressSingleObserver(MVPOnDistributeActionTerminalProgress mvpTerminalProgress, boolean showProgress, boolean hideProgress) {
-        super(mvpTerminalProgress, showProgress, hideProgress);
+    public DistributeProgressSingleObserver(MVPOnDistributeActionTerminalProgress mvpTerminalProgress) {
+        super(mvpTerminalProgress);
         mMvpTerminalProgress = mMvpTerminalProgress;
-        mShowProgress = showProgress;
-        mHideProgress = hideProgress;
     }
 
     @Override

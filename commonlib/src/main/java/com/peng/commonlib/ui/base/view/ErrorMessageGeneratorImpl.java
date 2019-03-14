@@ -1,9 +1,10 @@
-package com.peng.commonlib.ui.base;
+package com.peng.commonlib.ui.base.view;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import com.peng.commonlib.BuildConfig;
+import com.peng.commonlib.ui.base.OnErrorMessageGenerator;
 import com.peng.commonlib.ui.base.exception.HttpExceptionUnifyHand;
 
 /**

@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
 import com.peng.commonlib.daggerinject.component.DaggerAppComponent;
 import com.peng.commonlib.data.network.HttpDebugUtils;
+import com.peng.commonlib.utils.ScreenAdapterUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -48,6 +49,11 @@ public class BaseApplication extends DaggerApplication {
         super.onCreate();
 
         baseApplication = this;
+
+        // 屏幕适配全局初始化
+        ScreenAdapterUtils.setup(this);
+        ScreenAdapterUtils.register(this, 360F,ScreenAdapterUtils.MATCH_BASE_WIDTH,ScreenAdapterUtils.MATCH_UNIT_DP);
+
 
         // 初始化工具类
         Utils.init(this);

@@ -1,4 +1,4 @@
-package com.peng.commonlib.rx.threadswitch;
+package com.peng.commonlib.rx.transformer;
 
 import org.reactivestreams.Publisher;
 

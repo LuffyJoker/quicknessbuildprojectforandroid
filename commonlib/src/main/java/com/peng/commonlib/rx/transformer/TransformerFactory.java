@@ -1,4 +1,4 @@
-package com.peng.commonlib.rx.threadswitch;
+package com.peng.commonlib.rx.transformer;
 
 /**
  * create by Mr.Q on 2019/3/5.

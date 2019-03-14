@@ -9,7 +9,7 @@ import com.peng.commonlib.ui.base.view.MVPLifecycleView;
 public abstract class AbsMVPActivity extends AbsDaggerActivity implements MVPLifecycleView {
 
     @Override
-    protected void injection() {
+    public void injection() {
         attachPresenter();
         super.injection();
     }
@@ -23,10 +23,10 @@ public abstract class AbsMVPActivity extends AbsDaggerActivity implements MVPLif
     /**
      * 连接Presenter
      */
-    abstract void attachPresenter();
+    protected abstract void attachPresenter();
 
     /**
      * 分离Presenter
      */
-    abstract void detachPresenter();
+    protected abstract void detachPresenter();
 }

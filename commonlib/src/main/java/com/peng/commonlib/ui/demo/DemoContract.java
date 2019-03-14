@@ -20,9 +20,9 @@ public interface DemoContract {
      * View 层，用于在 presenter 层回调 View 的相关方法
      */
     interface View extends MVPOnDistributeActionTerminalProgress {
-        void success();
+        void success(Resp<DemoEntity> resp);
 
-        void fail();
+        void fail(int code,String msg);
     }
 
     /**

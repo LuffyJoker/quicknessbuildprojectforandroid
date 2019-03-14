@@ -80,7 +80,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBa
      * @author pq
      * create at 2019/2/16
      */
-    protected void injection() {
+    public void injection() {
         ARouter.getInstance().inject(this);
     }
 

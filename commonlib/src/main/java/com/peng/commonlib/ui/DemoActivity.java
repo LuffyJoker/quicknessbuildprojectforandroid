@@ -7,21 +7,23 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.R;
 import com.peng.commonlib.data.database.AppDatabase;
+import com.peng.commonlib.data.network.entity.DemoEntity;
+import com.peng.commonlib.data.network.entity.Resp;
 import com.peng.commonlib.routing.RoutingConstants;
-import com.peng.commonlib.rx.threadswitch.TransformerFactory;
+import com.peng.commonlib.rx.transformer.TransformerFactory;
 
 import com.peng.commonlib.ui.base.view.activity.AbsDaggerActivity;
+import com.peng.commonlib.ui.base.view.activity.AbsTerminalProgressActivity;
 import com.peng.commonlib.ui.demo.DemoContract;
 
 import javax.inject.Inject;
 
 import io.reactivex.functions.Action;
 
-public class DemoActivity extends AbsDaggerActivity implements DemoContract.View {
+public class DemoActivity extends AbsTerminalProgressActivity implements DemoContract.View {
 
     @Inject
     AppDatabase mAppDatabase;
-
 
     @Inject
     DemoContract.Presenter<DemoContract.View, DemoContract.Interactor> presenter;
@@ -33,12 +35,17 @@ public class DemoActivity extends AbsDaggerActivity implements DemoContract.View
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void attachPresenter() {
         presenter.onAttach(this);
     }
 
     @Override
-    protected void injection() {
-
+    protected void detachPresenter() {
+        presenter.onDetach();
     }
 
     @Override
@@ -47,7 +54,7 @@ public class DemoActivity extends AbsDaggerActivity implements DemoContract.View
     }
 
     public void click(View view) {
-        LogUtils.d("123");
+        // 数据库使用
         presenter.queryUserByUserID(123L, 123)
                 .compose(TransformerFactory.ioToMain())
                 .subscribe(new Action() {
@@ -59,50 +66,22 @@ public class DemoActivity extends AbsDaggerActivity implements DemoContract.View
 
         presenter.fetchBindingState();
 
-        ARouter.getInstance()
-                .build(RoutingConstants.ROUTING_BINDING_ACTIVITY)
-                .withTransition(R.anim.popumenu_animation_show, R.anim.popumenu_animation_hide)
-                .navigation(this);
-        finish();
+//        ARouter.getInstance()
+//                .build(RoutingConstants.ROUTING_BINDING_ACTIVITY)
+//                .withTransition(R.anim.popumenu_animation_show, R.anim.popumenu_animation_hide)
+//                .navigation(this);
+//        finish();
     }
 
     @Override
-    public void success() {
-
+    public void success(Resp<DemoEntity> resp) {
+        LogUtils.d(resp.tdata.getStoreName());
     }
 
     @Override
-    public void fail() {
-
+    public void fail(int code, String msg) {
+        LogUtils.d("失败：" + code + "\n" + "失败原因：" + msg);
     }
 
-    @Override
-    public void showProgress() {
 
-    }
-
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
-    public void showErrorMsg(CharSequence msg) {
-
-    }
-
-    @Override
-    public void showUnauthorized(String msg) {
-
-    }
-
-    @Override
-    public void showInvalidAccountRecord() {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

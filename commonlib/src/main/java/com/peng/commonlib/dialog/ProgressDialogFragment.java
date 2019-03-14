@@ -3,6 +3,7 @@ package com.peng.commonlib.dialog;
 import android.os.Bundle;
 
 import com.peng.commonlib.ui.base.view.dialog.AbsBaseDialogFragment;
+import com.peng.dglib.other.DialogFragmentOptions;
 
 
 /**
@@ -21,6 +22,12 @@ public class ProgressDialogFragment extends AbsBaseDialogFragment {
     protected void initData(Bundle savedInstanceState) {
 
     }
+
+//    @Override
+//    public void setDialogFragmentOptions(DialogFragmentOptions dialogFragmentOptions) {
+//
+//        super.setDialogFragmentOptions(dialogFragmentOptions);
+//    }
 
 //    override var compileOverrideOptions: (DialogOptions.() -> Unit)? = {
 //        width = HolderConvertUtls.dp2px(200f)

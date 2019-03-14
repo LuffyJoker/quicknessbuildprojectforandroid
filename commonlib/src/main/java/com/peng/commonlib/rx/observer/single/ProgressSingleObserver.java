@@ -1,5 +1,6 @@
 package com.peng.commonlib.rx.observer.single;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.ui.base.view.MVPProgressView;
 
 import io.reactivex.disposables.Disposables;
@@ -12,13 +13,11 @@ import io.reactivex.observers.ResourceSingleObserver;
 public abstract class ProgressSingleObserver<T> extends ResourceSingleObserver<T> {
 
     private MVPProgressView mMvpProgressView;
-    private boolean mShowProgress;
-    private boolean mHideProgress;
+    private boolean mShowProgress = true;
+    private boolean mHideProgress = true;
 
-    public ProgressSingleObserver(MVPProgressView mvpProgressView, boolean showProgress, boolean hideProgress) {
+    public ProgressSingleObserver(MVPProgressView mvpProgressView) {
         mMvpProgressView = mvpProgressView;
-        mShowProgress = showProgress;
-        mHideProgress = hideProgress;
     }
 
     @Override
