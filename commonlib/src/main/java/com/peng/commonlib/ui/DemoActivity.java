@@ -62,7 +62,7 @@ public class DemoActivity extends AbsDaggerActivity implements DemoContract.View
                 .build(RoutingConstants.ROUTING_BINDING_ACTIVITY)
                 .withTransition(R.anim.popumenu_animation_show, R.anim.popumenu_animation_hide)
                 .navigation(this);
-//        finish();
+        finish();
     }
 
     @Override
