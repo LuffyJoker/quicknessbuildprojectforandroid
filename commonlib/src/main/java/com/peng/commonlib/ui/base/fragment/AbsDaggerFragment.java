@@ -14,10 +14,24 @@ import dagger.android.support.HasSupportFragmentInjector;
 /**
  * Created by Mr.Q on 2019/2/19.
  * 描述：
- *      1、Fragment 的 Dagger 抽象类，继承自最顶层基类，扩展以支持 Dagger 注入
- *      2、Dagger2 依赖注入支持，所以需要在 FragmentModule 中进行声明，如下：
- *          @ContributesAndroidInjector()
- *          abstract XXXFragment contributeXXXFragment();
+ * Dagger抽象类，继承自最顶层基类，扩展以支持Dagger注入
+ *
+ * feature: 布局id模板方法
+ *
+ * feature: parentActivity持有
+ *
+ * feature: ARouter注入
+ *
+ * feature: 键盘事件处理
+ *
+ * feature: initView模板方法
+ *
+ * feature: initData模板方法
+ *
+ * feature: Dagger2依赖注入支持，故需要在FragmentModule中进行声明，如下：
+ *      @ContributesAndroidInjector()
+ *      abstract fun contributeXXXFragment(): XXXFragment
+ *
  */
 abstract class AbsDaggerFragment extends AbsBaseFragment implements HasSupportFragmentInjector {
 

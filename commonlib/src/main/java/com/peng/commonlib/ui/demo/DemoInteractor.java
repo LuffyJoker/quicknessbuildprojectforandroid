@@ -1,11 +1,11 @@
 package com.peng.commonlib.ui.demo;
 
-import com.peng.commonlib.database.repository.UserRepository;
+import com.peng.commonlib.data.database.repository.userinfo.UserRepository;
 import com.peng.commonlib.mvp.interactor.BaseInteractor;
 
-import com.peng.commonlib.network.ApiHelper;
-import com.peng.commonlib.network.entity.DemoEntity;
-import com.peng.commonlib.network.entity.Resp;
+import com.peng.commonlib.data.network.ApiHelper;
+import com.peng.commonlib.data.network.entity.DemoEntity;
+import com.peng.commonlib.data.network.entity.Resp;
 
 
 import javax.inject.Inject;

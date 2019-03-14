@@ -1,7 +1,7 @@
 package com.peng.commonlib.rx.preference;
 
-import com.peng.commonlib.constant.PrefKeyConstant;
-import com.peng.commonlib.database.entity.Question;
+import com.peng.commonlib.data.constant.PrefKeyConstant;
+import com.peng.commonlib.data.entity.Question;
 
 import javax.inject.Inject;
 import javax.inject.Named;

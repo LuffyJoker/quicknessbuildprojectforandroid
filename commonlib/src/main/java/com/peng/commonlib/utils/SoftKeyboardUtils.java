@@ -1,5 +1,23 @@
 package com.peng.commonlib.utils;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Rect;
+import android.os.IBinder;
+import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.EditText;
+import android.widget.ScrollView;
+
+import java.lang.reflect.Method;
+import java.util.List;
+
 /**
  * Created by Mr.Q on 2019/2/16.
  * 描述：
@@ -40,4 +58,225 @@ public class SoftKeyboardUtils {
      * EditText edit = (EditText) findViewById(R.id.edit);
      * edit.setInputType(InputType.TYPE_NULL);
      */
+
+    /**
+     * 当软键盘已经显示， 调用该方法软键盘将隐藏
+     * 当软键盘已经隐藏， 调用该方法软键盘将重新显示(两次调用需要有点延时，需当软键盘已经隐藏时才是这么一个特性)
+     *
+     * @param activity
+     */
+    public static void hideSoftKeyboardByFlag(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     * 隐藏软键盘(只适用于Activity，不适用于Fragment，目前测试都适用)
+     *
+     * @param activity 当前Activity
+     */
+    public static void hideSoftKeyboardByFocusView(Activity activity) {
+        View view = activity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    /**
+     * 隐藏软键盘(只适用于Activity，不适用于Fragment，目前测试都适用)
+     *
+     * @param activity 当前Activity
+     */
+    public static void hideSoftKeyboardByDecorView(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
+    }
+
+    /**
+     * 隐藏软键盘(可用于Activity，Fragment)
+     *
+     * @param context
+     * @param view    一般是传入 EditText 的引用
+     */
+    public static void hideSoftKeyboardBySpecifiedView(Context context, View view) {
+        if (view == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                view.getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS
+        );
+    }
+
+    /**
+     * 隐藏软键盘(可用于Activity，Fragment)
+     *
+     * @param context
+     * @param viewList 一般是传入EditText的引用列表
+     */
+    public static void hideSoftKeyboardBySpecifiedViews(Context context, List<View> viewList) {
+        if (viewList == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        for(View v:viewList){
+            inputMethodManager.hideSoftInputFromWindow(
+                    v.getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS
+            );
+        }
+    }
+
+    /**
+     * 注册 touchEvent 事件，实现点击键盘区域外隐藏的效果
+     *
+     * @param activity
+     * @param content
+     */
+    public static void registerTouchEvent(Activity activity, ViewGroup content) {
+        ViewGroup viewGroup = content;
+        if (viewGroup == null) {
+            viewGroup = activity.findViewById(android.R.id.content);
+        }
+        getScrollView(viewGroup, activity);
+        viewGroup.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                dispatchTouchEvent(activity, event);
+                return false;
+            }
+        });
+    }
+
+    /**
+     * @param viewGroup
+     * @param activity
+     */
+    private static void getScrollView(ViewGroup viewGroup, Activity activity) {
+        if (null == viewGroup) {
+            return;
+        }
+        int count = viewGroup.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View view = viewGroup.getChildAt(i);
+            if (view instanceof ScrollView) {
+                view.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        dispatchTouchEvent(activity, event);
+                        return false;
+                    }
+                });
+            } else if (view instanceof AbsListView) {
+                view.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        dispatchTouchEvent(activity, event);
+                        return false;
+                    }
+                });
+            } else if (view instanceof RecyclerView) {
+                view.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        dispatchTouchEvent(activity, event);
+                        return false;
+                    }
+                });
+            } else if (view instanceof ViewGroup) {
+                getScrollView((ViewGroup) view, activity);
+            }
+        }
+    }
+
+    /**
+     * @param activity
+     * @param ev
+     * @return
+     */
+    private static boolean dispatchTouchEvent(Activity activity,MotionEvent ev){
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = activity.getCurrentFocus();
+            if (null != v && isShouldHideInput(v, ev)) {
+                hideSoftInput(activity, v.getWindowToken());
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param dialog
+     * @param ev
+     * @return
+     */
+    public static boolean dispatchTouchEvent(Dialog dialog, MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = dialog.getCurrentFocus();
+            if (null != v && isShouldHideInput(v, ev)) {
+                hideSoftInput(dialog.getContext(), v.getWindowToken());
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param v
+     * @param event
+     * @return
+     */
+    private static boolean isShouldHideInput(View v,MotionEvent event){
+        if (v instanceof EditText) {
+            Rect rect = new Rect();
+            v.getGlobalVisibleRect(rect);
+            if (rect.contains((int)event.getX(), (int)event.getY())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param context
+     * @param token
+     */
+    private static void hideSoftInput(Context context, IBinder token) {
+        if (token != null) {
+            InputMethodManager im = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    public static boolean isSoftInputShowing(Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        return imm.isActive();
+    }
+
+    /**
+     * 不允许键盘弹出
+     */
+    public static void disableShowSoftInput(EditText editText) {
+        if (android.os.Build.VERSION.SDK_INT <= 10) {
+            editText.setInputType(InputType.TYPE_NULL);
+        } else {
+            Class cls = EditText.class;
+            Method method;
+            try {
+                method = cls.getMethod("setShowSoftInputOnFocus", boolean.class);
+                method.setAccessible(true);
+                method.invoke(editText, false);
+            } catch (Exception e) {
+            }
+
+            try {
+                method = cls.getMethod("setSoftInputShownOnFocus", boolean.class);
+                method.setAccessible(true);
+                method.invoke(editText, false);
+            } catch (Exception e) {
+            }
+
+        }
+    }
+
 }

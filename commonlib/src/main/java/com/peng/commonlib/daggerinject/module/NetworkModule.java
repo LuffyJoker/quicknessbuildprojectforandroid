@@ -2,16 +2,15 @@ package com.peng.commonlib.daggerinject.module;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.peng.commonlib.BaseApplication;
 import com.peng.commonlib.BuildConfig;
-import com.peng.commonlib.constant.NamedConstant;
-import com.peng.commonlib.network.ApiHelper;
-import com.peng.commonlib.network.interceptor.HeaderInterceptor;
-import com.peng.commonlib.network.interceptor.LoggingInterceptor;
-import com.peng.commonlib.network.interceptor.MockInterceptor;
+import com.peng.commonlib.data.constant.NamedConstant;
+import com.peng.commonlib.data.network.ApiHelper;
+import com.peng.commonlib.data.network.interceptor.HeaderInterceptor;
+import com.peng.commonlib.data.network.interceptor.LoggingInterceptor;
+import com.peng.commonlib.data.network.interceptor.MockInterceptor;
 
 import java.io.File;
 import java.security.KeyManagementException;

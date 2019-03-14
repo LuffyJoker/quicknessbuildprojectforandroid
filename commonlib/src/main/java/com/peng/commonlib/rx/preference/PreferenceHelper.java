@@ -1,6 +1,6 @@
 package com.peng.commonlib.rx.preference;
 
-import com.peng.commonlib.database.entity.Question;
+import com.peng.commonlib.data.entity.Question;
 
 import io.reactivex.Observable;
 

@@ -5,12 +5,27 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.peng.commonlib.manager.ActivityManager;
 import com.peng.commonlib.ui.base.fragment.AbsBaseFragment;
+import com.peng.commonlib.utils.SoftKeyboardUtils;
 
 /**
  * Created by Mr.Q on 2019/2/16.
  * 描述：
+ * activity 最顶层基类，继承自 supportV7 包 AppCompatActivity
+ *
+ * feature: 布局 id 模板方法
+ *
+ * feature: 三方框架注入模板方法
+ *
+ * feature: ARouter 注入
+ *
+ * feature: 键盘事件处理
+ *
+ * feature: initView 模板方法
+ *
+ * feature: initData 模板方法
  */
 public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBaseFragment.CallBack {
 
@@ -32,6 +47,9 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBa
 
         // 用于第三方框架的注入
         injection();
+
+        // 键盘事件注册
+        SoftKeyboardUtils.registerTouchEvent(this, null);
 
         // 初始化控件
         initView(savedInstanceState);
@@ -63,8 +81,8 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBa
      * @author pq
      * create at 2019/2/16
      */
-    protected void injection(){
-//        ARouter.getInstance().inject(this);
+    protected void injection() {
+        ARouter.getInstance().inject(this);
     }
 
     /**

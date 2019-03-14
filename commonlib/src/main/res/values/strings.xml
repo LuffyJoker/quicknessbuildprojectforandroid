@@ -26,4 +26,7 @@
     <!-- 提示 -->
     <string name="invalid_response">请提供有效的业务Response(Resp业务实体)，或使用原生Observer</string>
 
+    <!-- 标签内容 -->
+    <string name="confirm">确认</string>
+
 </resources>

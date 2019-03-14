@@ -1,0 +1,54 @@
+###[返回](../../APP_DEV_README.md)
+
+# MVP模式快速开发相关文档
+    本文档主要阐述了在当前架构下如何进行MVP模式的快速搭建，以及配置让顺利运行起来一个MVP运行起来，主要注意点:
+    框架内采用标准的mvp进行开发所以严格遵守以下标准:
+    1、V层只会做UI相关的操作，所有业务业务逻辑判断都在P层去做
+    2、所有的回掉尽可能以接口的方式进行约束，各层级之间交互尽可能通过接口函数约束
+    3、M层只做数据相关操作
+    4、使用模块来进行分包管理(一个V层可是视为一个模块)
+    5、其他未包含的约束可后期商议加入达成统一的约束，防止出现个体差异
+
+    注:如果后期变动了会同步更新此文档，因为当前(2019.3.14)可能不是最终确定版
+
+###具体步骤
+
+   >搭建一个MVP的页面
+
+   项目采用的是Activity+Fragment的方式来进行搭建，实际的V层是activity中的Fragment而不是传统的Activity
+   项目中主要的界面相关的包请在[com.holderzone.android.store.aio.ui.*]
+
+   注:以下包名称前缀为:[com.holderzone.android.store.aio]
+
+   具体操作如下:
+
+   * 导入MVP的Activity模板,[详情参考](http://101.37.252.104/holderRD/holder-java/android/holder-android-idea-setting)
+   * 在[.ui]包下创建分类包
+   * 在模块包中新建Activity然后选择MVP模板创建,如下:
+
+   <img src="./picture/mvp_a.png" width="500" height="450"/>
+
+   * 创建后会生成如下样式的文件
+
+   <img src="./picture/mvp_b.png" width="500" height="350"/>
+
+   * 在[com.holderzone.android.store.aio.routing.RoutingConstants]中添加路由信息
+   * 配置dagger注入的module信息，([或者直接参考](http://101.37.252.104/holderRD/holder-java/android/holder-android-idea-setting))如下:
+
+    com.holderzone.android.store.aio.di.module.ActivityModule :配置你的avtivity连接器
+
+    //配置dagger对Activity连接器
+    //方法名称任意(建议contribute开头),返回值为具体的界面对象
+    @ContributesAndroidInjector()
+    abstract fun contributeTestMvpActivity(): TestMvpActivity
+
+
+    com.holderzone.android.store.aio.di.module.FragmentModule :配置你的Fragment连接器
+
+    //配置dagger对Fragment连接器
+    //方法名称任意(建议contribute开头),返回值为具体的Fragment对象
+    @ContributesAndroidInjector(modules = [(TestMvpModule::class)])
+    abstract fun contributeTestMvpFragment(): TestMvpFragment
+
+   完成如上配置后，正常的MVP已经创建好了，你子需要在 xxxContract文件中添加你的业务处理代码即可
+

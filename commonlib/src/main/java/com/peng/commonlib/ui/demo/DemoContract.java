@@ -3,8 +3,8 @@ package com.peng.commonlib.ui.demo;
 import com.peng.commonlib.mvp.interactor.MVPInteractor;
 import com.peng.commonlib.mvp.presenter.MVPPresenter;
 
-import com.peng.commonlib.network.entity.DemoEntity;
-import com.peng.commonlib.network.entity.Resp;
+import com.peng.commonlib.data.network.entity.DemoEntity;
+import com.peng.commonlib.data.network.entity.Resp;
 import com.peng.commonlib.ui.base.view.MVPOnDistributeActionTerminalProgress;
 
 import io.reactivex.Completable;

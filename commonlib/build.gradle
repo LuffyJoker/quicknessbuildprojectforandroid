@@ -22,7 +22,7 @@ android {
         defaultConfig {
             javaCompileOptions {
                 annotationProcessorOptions {
-                    arguments = ["room.schemaLocation": "$projectDir/schemas".toString(),AROUTER_MODULE_NAME: project.getName()]
+                    arguments = ["room.schemaLocation": "$projectDir/schemas".toString(), AROUTER_MODULE_NAME: project.getName()]
                 }
             }
         }
@@ -157,5 +157,12 @@ dependencies {
     // Arouter 路由框架
     implementation 'com.alibaba:arouter-api:1.4.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+    // DialogFragment 框架
+    implementation 'com.github.LuffyJoker:AllPowerfulDialogFragment-master:1.0.0'
+
+    // butterknife
+    api 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
 }

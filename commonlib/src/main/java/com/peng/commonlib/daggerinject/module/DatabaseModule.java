@@ -3,13 +3,13 @@ package com.peng.commonlib.daggerinject.module;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.peng.commonlib.constant.AppConstants;
+import com.peng.commonlib.data.constant.AppConstants;
 import com.peng.commonlib.daggerinject.qualifier.DatabaseName;
 import com.peng.commonlib.daggerinject.qualifier.DatabaseVersion;
-import com.peng.commonlib.database.AppDatabase;
-import com.peng.commonlib.database.dao.UserDao;
-import com.peng.commonlib.database.repository.IUserRepo;
-import com.peng.commonlib.database.repository.UserRepository;
+import com.peng.commonlib.data.database.AppDatabase;
+import com.peng.commonlib.data.database.repository.userinfo.UserDao;
+import com.peng.commonlib.data.database.repository.userinfo.IUserRepo;
+import com.peng.commonlib.data.database.repository.userinfo.UserRepository;
 
 import javax.inject.Singleton;
 

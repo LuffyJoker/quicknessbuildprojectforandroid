@@ -10,11 +10,24 @@ import com.peng.commonlib.mvp.view.MVPView;
 /**
  * Created by Mr.Q on 2019/2/19.
  * 描述：
- *      1、MVP 抽象类，继承自 Dagger 抽象类，扩展以支持 MVP 分层架构
- *      2、parentActivity 持有
- *      3、Dagger2 依赖注入支持，且支持 MVP，故需要在 FragmentModule 中进行声明，如下：
- *          @ContributesAndroidInjector(modules = [XXXFragmentModule.class])
- *          abstract XXXFragment contributeXXXFragment()
+ *
+ * MVP抽象类，继承自Dagger抽象类，扩展以支持MVP分层架构
+ *
+ * feature: 布局id模板方法
+ *
+ * feature: parentActivity持有
+ *
+ * feature: ARouter注入
+ *
+ * feature: 键盘事件处理
+ *
+ * feature: initView模板方法
+ *
+ * feature: initData模板方法
+ *
+ * feature: Dagger2依赖注入支持，且支持MVP，故需要在FragmentModule中进行声明，如下：
+ *      @ContributesAndroidInjector(modules = [XXXFragmentModule::class])
+ *      abstract fun contributeXXXFragment(): XXXFragment
  */
 abstract class AbsMVPFragment extends AbsDaggerFragment implements MVPView {
     @Override

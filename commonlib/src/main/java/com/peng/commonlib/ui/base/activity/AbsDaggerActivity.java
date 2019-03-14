@@ -17,8 +17,18 @@ import dagger.android.support.HasSupportFragmentInjector;
 /**
  * Created by Mr.Q on 2019/2/16.
  * 描述：
+ *  1、Dagger 抽象类，继承自最顶层基类，扩展以支持 Dagger 注入
+ *  2、Dagger2 依赖注入支持，故需要在 ActivityModule 中进行声明，如下：
+ *     @ContributesAndroidInjector()
+ *     abstract fun contributeXXXActivity(): XXXActivity
  */
 public abstract class AbsDaggerActivity extends AbsBaseActivity implements HasFragmentInjector, HasSupportFragmentInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> supportFragmentInjector;
+
+    @Inject
+    DispatchingAndroidInjector<android.support.v4.app.Fragment> frameworkFragmentInjector;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,11 +37,11 @@ public abstract class AbsDaggerActivity extends AbsBaseActivity implements HasFr
         super.onCreate(savedInstanceState);
     }
 
-    @Inject
-    DispatchingAndroidInjector<Fragment> supportFragmentInjector;
-
-    @Inject
-    DispatchingAndroidInjector<android.support.v4.app.Fragment> frameworkFragmentInjector;
+    @Override
+    protected void onDestroy() {
+        ActivityManager.removeActivity(this); //移除activity控制集合
+        super.onDestroy();
+    }
 
     @Override
     public AndroidInjector<Fragment> fragmentInjector() {

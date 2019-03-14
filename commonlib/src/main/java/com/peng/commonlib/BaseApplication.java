@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
 import com.peng.commonlib.daggerinject.component.DaggerAppComponent;
-import com.peng.commonlib.network.HttpDebugUtils;
+import com.peng.commonlib.data.network.HttpDebugUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -56,9 +58,23 @@ public class BaseApplication extends DaggerApplication {
         }
 
         // 初始化 Stetho，利用 chrome 查看网络请求
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this);
         }
+
+        // arouter
+        initARouter();
+    }
+
+    /**
+     * 初始化阿里路由框架
+     */
+    private void initARouter() {
+        if (AppUtils.isAppDebug()) {
+            ARouter.openLog();    // 打印日志
+            ARouter.openDebug();  // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
 
 
