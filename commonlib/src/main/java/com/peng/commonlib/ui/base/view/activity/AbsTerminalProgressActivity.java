@@ -1,7 +1,6 @@
-package com.peng.commonlib.ui.base.activity;
+package com.peng.commonlib.ui.base.view.activity;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.peng.commonlib.dialog.ProgressDialogFragment;
 import com.peng.commonlib.dialog.TerminalDialogFragment;
 import com.peng.commonlib.manager.DialogFactory;
 import com.peng.commonlib.ui.base.view.MVPTerminalProgress;

@@ -1,7 +1,7 @@
 package com.peng.commonlib.ui.demo;
 
 import com.peng.commonlib.data.database.repository.userinfo.UserRepository;
-import com.peng.commonlib.mvp.interactor.BaseInteractor;
+import com.peng.commonlib.ui.base.interactor.BaseInteractor;
 
 import com.peng.commonlib.data.network.ApiHelper;
 import com.peng.commonlib.data.network.entity.DemoEntity;

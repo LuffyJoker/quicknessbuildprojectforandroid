@@ -1,8 +1,7 @@
-package com.peng.commonlib.ui.base.fragment;
+package com.peng.commonlib.ui.base.view.fragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
-
 
 import javax.inject.Inject;
 

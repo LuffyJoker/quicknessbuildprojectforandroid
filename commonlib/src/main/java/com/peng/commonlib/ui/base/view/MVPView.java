@@ -1,4 +1,4 @@
-package com.peng.commonlib.mvp.view;
+package com.peng.commonlib.ui.base.view;
 
 /**
  * Created by Mr.Q on 2019/2/19.

@@ -1,8 +1,8 @@
-package com.peng.commonlib.ui.base.activity;
+package com.peng.commonlib.ui.base.view.activity;
 
 import com.peng.commonlib.dialog.ProgressDialogFragment;
-import com.peng.commonlib.ui.base.dialog.AbsBaseDialogFragment;
 import com.peng.commonlib.ui.base.view.MVPProgressView;
+import com.peng.commonlib.ui.base.view.dialog.AbsBaseDialogFragment;
 
 /**
  * create by Mr.Q on 2019/3/5.

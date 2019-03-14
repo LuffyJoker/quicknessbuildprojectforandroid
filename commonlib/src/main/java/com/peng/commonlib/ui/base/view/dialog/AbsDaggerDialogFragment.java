@@ -1,4 +1,4 @@
-package com.peng.commonlib.ui.base.dialog;
+package com.peng.commonlib.ui.base.view.dialog;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

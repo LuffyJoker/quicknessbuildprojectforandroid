@@ -1,4 +1,4 @@
-package com.peng.commonlib.ui.base.fragment;
+package com.peng.commonlib.ui.base.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.peng.commonlib.ui.base.activity.AbsBaseActivity;
+
+import com.peng.commonlib.ui.base.view.activity.AbsBaseActivity;
 import com.peng.commonlib.utils.SoftKeyboardUtils;
 
 

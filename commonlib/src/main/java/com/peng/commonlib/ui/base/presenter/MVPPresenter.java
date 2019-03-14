@@ -1,7 +1,8 @@
-package com.peng.commonlib.mvp.presenter;
+package com.peng.commonlib.ui.base.presenter;
 
-import com.peng.commonlib.mvp.interactor.MVPInteractor;
-import com.peng.commonlib.mvp.view.MVPView;
+
+import com.peng.commonlib.ui.base.interactor.MVPInteractor;
+import com.peng.commonlib.ui.base.view.MVPView;
 
 /**
  * Created by Mr.Q on 2019/2/22.

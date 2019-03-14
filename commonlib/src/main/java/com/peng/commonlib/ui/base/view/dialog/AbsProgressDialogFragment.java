@@ -1,4 +1,4 @@
-package com.peng.commonlib.ui.base.dialog;
+package com.peng.commonlib.ui.base.view.dialog;
 
 import com.peng.commonlib.dialog.ProgressDialogFragment;
 import com.peng.commonlib.ui.base.view.MVPProgressView;

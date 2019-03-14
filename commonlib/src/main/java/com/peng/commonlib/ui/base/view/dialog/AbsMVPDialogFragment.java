@@ -1,11 +1,11 @@
-package com.peng.commonlib.ui.base.dialog;
+package com.peng.commonlib.ui.base.view.dialog;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.peng.commonlib.mvp.view.MVPView;
+import com.peng.commonlib.ui.base.view.MVPView;
 
 /**
  * create by Mr.Q on 2019/3/14.

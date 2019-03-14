@@ -1,9 +1,10 @@
 package com.peng.commonlib.ui.demo;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.peng.commonlib.mvp.presenter.BasePresenter;
+
 import com.peng.commonlib.data.network.entity.DemoEntity;
 import com.peng.commonlib.data.network.entity.Resp;
+import com.peng.commonlib.ui.base.presenter.BasePresenter;
 
 import javax.inject.Inject;
 

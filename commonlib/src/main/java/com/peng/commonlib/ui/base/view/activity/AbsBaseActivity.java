@@ -1,13 +1,12 @@
-package com.peng.commonlib.ui.base.activity;
+package com.peng.commonlib.ui.base.view.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.peng.commonlib.manager.ActivityManager;
-import com.peng.commonlib.ui.base.fragment.AbsBaseFragment;
+import com.peng.commonlib.ui.base.view.fragment.AbsBaseFragment;
 import com.peng.commonlib.utils.SoftKeyboardUtils;
 
 /**

@@ -9,7 +9,8 @@ import com.peng.commonlib.R;
 import com.peng.commonlib.data.database.AppDatabase;
 import com.peng.commonlib.routing.RoutingConstants;
 import com.peng.commonlib.rx.threadswitch.TransformerFactory;
-import com.peng.commonlib.ui.base.activity.AbsDaggerActivity;
+
+import com.peng.commonlib.ui.base.view.activity.AbsDaggerActivity;
 import com.peng.commonlib.ui.demo.DemoContract;
 
 import javax.inject.Inject;

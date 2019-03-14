@@ -5,8 +5,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 
 import com.blankj.utilcode.util.NetworkUtils;
-import com.peng.commonlib.ui.base.activity.AbsBaseActivity;
+
 import com.peng.commonlib.ui.base.view.MVPProgressView;
+import com.peng.commonlib.ui.base.view.activity.AbsBaseActivity;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;

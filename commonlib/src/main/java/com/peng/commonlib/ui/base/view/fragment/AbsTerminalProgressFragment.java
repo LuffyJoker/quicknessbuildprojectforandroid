@@ -1,4 +1,4 @@
-package com.peng.commonlib.ui.base.fragment;
+package com.peng.commonlib.ui.base.view.fragment;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.peng.commonlib.dialog.TerminalDialogFragment;

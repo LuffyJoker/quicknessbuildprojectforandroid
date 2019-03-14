@@ -1,4 +1,4 @@
-package com.peng.commonlib.mvp.interactor;
+package com.peng.commonlib.ui.base.interactor;
 
 /**
  * Created by Mr.Q on 2019/2/22.

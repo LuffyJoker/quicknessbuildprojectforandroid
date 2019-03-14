@@ -2,7 +2,7 @@ package com.peng.commonlib.dialog;
 
 import android.os.Bundle;
 
-import com.peng.commonlib.ui.base.dialog.AbsDaggerDialogFragment;
+import com.peng.commonlib.ui.base.view.dialog.AbsDaggerDialogFragment;
 
 
 /**

@@ -10,7 +10,8 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.peng.commonlib.R;
-import com.peng.commonlib.ui.base.dialog.AbsBaseDialogFragment;
+
+import com.peng.commonlib.ui.base.view.dialog.AbsBaseDialogFragment;
 import com.peng.commonlib.utils.AppManager;
 import com.peng.dglib.other.DialogFragmentOptions;
 

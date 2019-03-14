@@ -1,4 +1,4 @@
-package com.peng.commonlib.ui.base.dialog;
+package com.peng.commonlib.ui.base.view.dialog;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.peng.commonlib.ui.base.activity.AbsBaseActivity;
+
+import com.peng.commonlib.ui.base.view.activity.AbsBaseActivity;
 import com.peng.commonlib.utils.SoftKeyboardUtils;
 import com.peng.dglib.BaseDialogFragment;
 

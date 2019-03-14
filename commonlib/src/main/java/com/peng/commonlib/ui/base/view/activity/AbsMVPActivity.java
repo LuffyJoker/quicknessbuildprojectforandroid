@@ -1,4 +1,4 @@
-package com.peng.commonlib.ui.base.activity;
+package com.peng.commonlib.ui.base.view.activity;
 
 import com.peng.commonlib.ui.base.view.MVPLifecycleView;
 
