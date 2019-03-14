@@ -4,7 +4,7 @@ package com.peng.commonlib.data.network;
 import com.peng.commonlib.data.network.entity.DemoEntity;
 import com.peng.commonlib.data.network.entity.Resp;
 
-import retrofit2.Call;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
@@ -25,5 +25,5 @@ public interface ApiHelper {
      */
     @Headers(value = HTTP_DEBUG_HEADER)
     @GET("device/find_device_status/{deviceNo}")
-    Call<Resp<DemoEntity>> fetchBindingState(@Path("deviceNo") String deviceNo);
+    Single<Resp<DemoEntity>> fetchBindingState(@Path("deviceNo") String deviceNo);
 }

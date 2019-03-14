@@ -11,6 +11,7 @@ import com.peng.commonlib.data.network.entity.Resp;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
+import io.reactivex.Single;
 import retrofit2.Call;
 
 /**
@@ -35,7 +36,7 @@ public class DemoInteractor extends BaseInteractor implements DemoContract.Inter
     }
 
     @Override
-    public Call<Resp<DemoEntity>> fetchBindingState() {
+    public Single<Resp<DemoEntity>> fetchBindingState() {
         return mApiHelper.fetchBindingState("B481EC12F76B7BA663E6D2735E9B45B6");
     }
 }

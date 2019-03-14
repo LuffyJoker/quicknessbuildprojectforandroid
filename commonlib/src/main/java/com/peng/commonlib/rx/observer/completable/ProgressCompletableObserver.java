@@ -8,6 +8,8 @@ import io.reactivex.observers.ResourceCompletableObserver;
 /**
  * create by Mr.Q on 2019/3/14.
  * 类介绍：
+ * 支持进度条显隐的 FlowableObserver
+ * 注意：不要与 Flowable.xxxToMainWithLifecycleProgress()一块儿使用，使用一种即可
  */
 public abstract class ProgressCompletableObserver extends ResourceCompletableObserver {
 

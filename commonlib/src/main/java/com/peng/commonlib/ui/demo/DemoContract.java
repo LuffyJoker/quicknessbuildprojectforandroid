@@ -7,7 +7,7 @@ import com.peng.commonlib.ui.base.presenter.MVPPresenter;
 import com.peng.commonlib.ui.base.view.MVPOnDistributeActionTerminalProgress;
 
 import io.reactivex.Completable;
-import retrofit2.Call;
+import io.reactivex.Single;
 
 /**
  * Created by Mr.Q on 2019/2/22.
@@ -55,6 +55,6 @@ public interface DemoContract {
         /**
          * 查询设备绑定状态（网络请求示例）
          */
-        Call<Resp<DemoEntity>> fetchBindingState();
+        Single<Resp<DemoEntity>> fetchBindingState();
     }
 }
