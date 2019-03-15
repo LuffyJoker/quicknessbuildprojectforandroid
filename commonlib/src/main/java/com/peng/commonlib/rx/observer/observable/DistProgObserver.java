@@ -13,15 +13,11 @@ import com.peng.commonlib.ui.base.view.MVPTerminalProgress;
  */
 public abstract class DistProgObserver<T> extends ProgressObserver<T> {
     private MVPTerminalProgress mvpTerminalProgress;
-    private boolean showProgress = true;
-    private boolean hideProgress = true;
 
 
     public DistProgObserver(MVPTerminalProgress mvpTerminalProgress, boolean showProgress, boolean hideProgress) {
         super(mvpTerminalProgress, showProgress, hideProgress);
         this.mvpTerminalProgress = mvpTerminalProgress;
-        this.showProgress = showProgress;
-        this.hideProgress = hideProgress;
     }
 
     public DistProgObserver(MVPTerminalProgress mvpTerminalProgress) {

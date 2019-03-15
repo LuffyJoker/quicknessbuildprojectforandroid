@@ -57,7 +57,7 @@ public class DemoPresenter<V extends DemoContract.View, I extends DemoContract.I
 
                     @Override
                     public void failure(int code, String msg) {
-                        view.fail(code,msg);
+                        view.fail(code, msg);
                     }
                 });
     }

@@ -18,6 +18,7 @@ import retrofit2.HttpException;
 /**
  * create by Mr.Q on 2019/3/11.
  * 类介绍：
+ *      Http 异常统一处理
  */
 public class HttpExceptionUnifyHand {
 

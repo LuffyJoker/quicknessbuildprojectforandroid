@@ -140,7 +140,7 @@ public class NetworkModule {
         // 为了避免使用 Gson 时遇到 locale 时间格式影响 Date 格式的问题，使用 GsonBuilder 来创建 Gson 对象，
         // 在创建过程中调用 GsonBuilder.setDateFormat(String) 指定一个固定的格式即可。
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-        return GsonConverterFactory.create();
+        return GsonConverterFactory.create(gson);
     }
 
     @Singleton

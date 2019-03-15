@@ -45,6 +45,17 @@ public class TerminalDialogFragment extends AbsBaseDialogFragment {
     private OnTerminalDialogListener listener = null;
 
     @Override
+    protected DialogFragmentOptions getDialogFragmentOptions() {
+        DialogFragmentOptions options = new DialogFragmentOptions();
+        options.layoutId = R.layout.terminal_dialog_fragment;
+        options.width = ConvertUtils.dp2px(320);
+        options.height = ConvertUtils.dp2px(168);
+        options.touchCancel = false;
+        options.backCancel = false;
+        return options;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
@@ -60,15 +71,6 @@ public class TerminalDialogFragment extends AbsBaseDialogFragment {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
-        DialogFragmentOptions options = new DialogFragmentOptions();
-        options.layoutId = R.layout.terminal_dialog_fragment;
-        options.width = ConvertUtils.dp2px(320);
-        options.height = ConvertUtils.dp2px(168);
-        options.touchCancel = false;
-        options.backCancel = false;
-
-
         tvTerminalMsg.setText(msg);
         btnTerminalConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

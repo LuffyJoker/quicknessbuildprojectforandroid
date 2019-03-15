@@ -1,4 +1,5 @@
 RxJava2.x 创建被观察者的几种方式：
+
     Observable<T>：能够发射 0 或 n 个数据，并以成功或错误事件终止
 
     Flowable<T>：能够发射 0 或 n 个数据，并以成功或错误事件终止。 支持 Backpressure，即控制数据源发射的速度
@@ -16,7 +17,7 @@ RxJava2.x 创建被观察者的几种方式：
            }
         });
 
-    Completable<T>：它从来不发射数据，只处理 onComplete 和 onError 事件。可以看成是Rx的Runnable
+    Completable<T>：它从来不发射数据，只处理 onComplete 和 onError 事件。可以看成是 Rx 的 Runnable
         Completable.create(new CompletableOnSubscribe() {
             @Override
             public void subscribe(@NonNull CompletableEmitter emitter) throws Exception {

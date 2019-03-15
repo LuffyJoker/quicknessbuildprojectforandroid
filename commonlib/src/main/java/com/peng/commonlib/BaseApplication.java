@@ -68,7 +68,7 @@ public class BaseApplication extends DaggerApplication {
             Stetho.initializeWithDefaults(this);
         }
 
-        // arouter
+        // Arouter 初始化
         initARouter();
     }
 

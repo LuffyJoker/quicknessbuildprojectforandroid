@@ -3,16 +3,12 @@ package com.peng.commonlib.ui;
 import android.os.Bundle;
 import android.view.View;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.LogUtils;
 import com.peng.commonlib.R;
 import com.peng.commonlib.data.database.AppDatabase;
 import com.peng.commonlib.data.network.entity.DemoEntity;
 import com.peng.commonlib.data.network.entity.Resp;
-import com.peng.commonlib.routing.RoutingConstants;
 import com.peng.commonlib.rx.transformer.TransformerFactory;
-
-import com.peng.commonlib.ui.base.view.activity.AbsDaggerActivity;
 import com.peng.commonlib.ui.base.view.activity.AbsTerminalProgressActivity;
 import com.peng.commonlib.ui.demo.DemoContract;
 
@@ -83,5 +79,9 @@ public class DemoActivity extends AbsTerminalProgressActivity implements DemoCon
         LogUtils.d("失败：" + code + "\n" + "失败原因：" + msg);
     }
 
-
+    @Override
+    public void showErrorMsg(CharSequence msg) {
+        super.showErrorMsg(msg);
+        LogUtils.d("连接超时");
+    }
 }

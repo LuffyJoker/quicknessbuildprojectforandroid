@@ -1,0 +1,44 @@
+1、新建一个类继承自BaseDialogFragment
+
+2、覆写 getDialogFragmentOptions 方法
+    eg、
+        @Override
+        protected DialogFragmentOptions getDialogFragmentOptions() {
+            DialogFragmentOptions options = new DialogFragmentOptions();
+            options.layoutId = R.layout.terminal_dialog_fragment;
+            options.width = ConvertUtils.dp2px(320);
+            options.height = ConvertUtils.dp2px(168);
+            options.touchCancel = false;
+            options.backCancel = false;
+            return options;
+        }
+        说明：所有属性都提供有相应的默认值，如果不覆写 getDialogFragmentOptions，则对话框的各项属性，均使用默认值
+
+3、DialogFragmentOptions 属性说明：
+
+       layoutId：设置 Fragment 的布局
+
+       animStyle：设置 Fragment 的动画样式，包含很多默认样式，自己看动画名字判断效果
+
+       gravityAsView：设置 Fragment 以对话框显示在某个 View 附近时，显示在 View 的什么位置
+
+       gravityAsWindow：Fragment 在窗体中的位置
+
+       asView：设置 Fragment 作为对话框显示时，是否依附于某个 View 显示
+
+       touchCancel：触摸对话框外面，对话框是否消失
+
+       backCancel：点击手机的返回键，对话框是否消息
+            说明：
+                1、当 touchCancel == true 时此属性无效
+                2、必须是 touchCancel == false 和 backCancel == false 时，那么点击屏幕区域和返回按钮都不能关闭 dialog
+
+       offsetX：Fragment 作为对话框依附于View显示时，相对于 View 的水平偏移量
+
+       offsetY：Fragment 作为对话框依附于View显示时，相对于 View 的垂直偏移量
+
+       width、height：设置 Fragment 的宽高
+
+       dimAmount:设置对话框显示时，窗体的灰度
+
+项目源码地址：https://github.com/LuffyJoker/AllPowerfulDialogFragment-master
