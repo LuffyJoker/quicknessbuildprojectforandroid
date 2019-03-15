@@ -9,6 +9,8 @@ import okhttp3.Response;
 /**
  * create by Mr.Q on 2019/3/11.
  * 类介绍：
+ *      请求头拦截器，用于给http请求添加 header 参数
+ *      注释掉的部分，是根据具体 app 的所需参数进行添加，其目的就只有一个，就是为了给请求头 header 添加内容
  */
 public class HeaderInterceptor implements Interceptor {
 
