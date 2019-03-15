@@ -165,6 +165,10 @@ dependencies {
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
+    // RecyclerView 适配器
     implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41"
+
+    // 导航栏
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 
 }
