@@ -1,18 +1,15 @@
 package com.peng.commonlib.ui.demo;
 
 import com.peng.commonlib.data.database.repository.userinfo.UserRepository;
-import com.peng.commonlib.ui.base.interactor.BaseInteractor;
-
 import com.peng.commonlib.data.network.ApiHelper;
 import com.peng.commonlib.data.network.entity.DemoEntity;
 import com.peng.commonlib.data.network.entity.Resp;
-
+import com.peng.commonlib.ui.base.interactor.BaseInteractor;
 
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
-import retrofit2.Call;
 
 /**
  * Created by Mr.Q on 2019/2/22.

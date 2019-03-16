@@ -17,7 +17,6 @@ import com.peng.commonlib.ui.demo.DemoContract;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.functions.Action;
 
