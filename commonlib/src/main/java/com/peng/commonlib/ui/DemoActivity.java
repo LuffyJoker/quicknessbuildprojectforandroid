@@ -2,8 +2,10 @@ package com.peng.commonlib.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.peng.commonlib.R;
 import com.peng.commonlib.data.database.AppDatabase;
 import com.peng.commonlib.data.network.entity.DemoEntity;
@@ -14,6 +16,9 @@ import com.peng.commonlib.ui.demo.DemoContract;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.functions.Action;
 
 public class DemoActivity extends AbsTerminalProgressActivity implements DemoContract.View {
@@ -24,6 +29,9 @@ public class DemoActivity extends AbsTerminalProgressActivity implements DemoCon
     @Inject
     DemoContract.Presenter<DemoContract.View, DemoContract.Interactor> presenter;
 
+    @BindView(R.id.btn)
+    Button btn;
+
     @Override
     protected void initData(Bundle savedInstanceState) {
 
@@ -31,7 +39,7 @@ public class DemoActivity extends AbsTerminalProgressActivity implements DemoCon
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
+        LogUtils.d("注入结果：" + btn);
     }
 
     @Override
@@ -83,5 +91,21 @@ public class DemoActivity extends AbsTerminalProgressActivity implements DemoCon
     public void showErrorMsg(CharSequence msg) {
         super.showErrorMsg(msg);
         LogUtils.d("连接超时");
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @OnClick({R.id.btn})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn:
+                ToastUtils.showShort("123");
+                break;
+            default:
+                break;
+        }
     }
 }

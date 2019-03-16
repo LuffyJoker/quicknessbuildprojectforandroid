@@ -10,6 +10,9 @@ import com.peng.commonlib.ui.base.view.fragment.AbsBaseFragment;
 import com.peng.commonlib.utils.SoftKeyboardUtils;
 import com.peng.dglib.BaseDialogFragment;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by Mr.Q on 2019/2/16.
  * 描述：
@@ -29,6 +32,8 @@ import com.peng.dglib.BaseDialogFragment;
  */
 public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBaseFragment.CallBack {
 
+    private Unbinder mUnbinder;
+
     @Override
     public void onFragmentAttached() {
 
@@ -44,6 +49,9 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBa
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutId());
+
+        // ButterKnife绑定
+        mUnbinder = ButterKnife.bind(this);
 
         // 用于第三方框架的注入
         injection();
@@ -97,11 +105,12 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBa
     @Override
     protected void onDestroy() {
         ActivityManager.removeActivity(this); //移除activity控制集合
+        // ButterKnife解除视图绑定
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
+            mUnbinder.unbind();
+        }
+        mUnbinder = null;
+
         super.onDestroy();
     }
-
-    public void showDialogFragmentOnWindow(BaseDialogFragment baseDialogFragment) {
-        baseDialogFragment.showOnWindow(getSupportFragmentManager(), baseDialogFragment.getClass().getName());
-    }
-
 }

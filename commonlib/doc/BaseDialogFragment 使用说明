@@ -14,7 +14,18 @@
         }
         说明：所有属性都提供有相应的默认值，如果不覆写 getDialogFragmentOptions，则对话框的各项属性，均使用默认值
 
-3、DialogFragmentOptions 属性说明：
+3、提供建造者模式快速显示对话框
+           eg、new MsgDialog.Builder()
+                    .setLayoutId(R.layout.dialog_two_btn)
+                    .asView(true)
+                    .setGravityAsView(DialogGravity.BOTTOM_ALIGN_RIGHT)
+                    .setWidth(50)
+                    .setHeight(50)
+                    .setDimAmount(0.5f)
+                    .build().showOnView(getSupportFragmentManager(), view);
+
+
+4、DialogFragmentOptions 属性说明：
 
        layoutId：设置 Fragment 的布局
 
