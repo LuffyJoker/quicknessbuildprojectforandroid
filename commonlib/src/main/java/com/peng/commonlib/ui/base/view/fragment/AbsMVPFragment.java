@@ -63,7 +63,7 @@ abstract class AbsMVPFragment extends AbsDaggerFragment implements MVPView {
      * @author pq
      * create at 2019/2/19
      */
-    abstract void detachPresenter();
+    protected abstract void detachPresenter();
 
     /**
      * 接入 presenter
@@ -71,5 +71,5 @@ abstract class AbsMVPFragment extends AbsDaggerFragment implements MVPView {
      * @author pq
      * create at 2019/2/19
      */
-    abstract void attachPresenter();
+    protected abstract void attachPresenter();
 }

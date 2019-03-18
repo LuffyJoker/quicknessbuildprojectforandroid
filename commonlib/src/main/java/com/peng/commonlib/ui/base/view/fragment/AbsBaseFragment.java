@@ -111,7 +111,7 @@ public abstract class AbsBaseFragment extends Fragment {
      * @return
      */
     @LayoutRes
-    abstract int layoutId();
+    protected abstract int layoutId();
 
     /**
      * 三方框架注入

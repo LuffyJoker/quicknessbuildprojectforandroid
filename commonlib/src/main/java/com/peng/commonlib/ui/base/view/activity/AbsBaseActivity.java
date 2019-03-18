@@ -1,10 +1,14 @@
 package com.peng.commonlib.ui.base.view.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.peng.commonlib.R;
 import com.peng.commonlib.manager.ActivityManager;
 import com.peng.commonlib.ui.base.view.fragment.AbsBaseFragment;
 import com.peng.commonlib.utils.SoftKeyboardUtils;
@@ -112,5 +116,81 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements AbsBa
         mUnbinder = null;
 
         super.onDestroy();
+    }
+
+    /**
+     * 使用 replace 方法设置 Fragment
+     *
+     * @param containerViewId
+     * @param fragment
+     */
+    protected void setFragmentOfReplace(@NonNull int containerViewId, AbsBaseFragment fragment) {
+        setFragmentOfReplace(containerViewId, fragment, null);
+    }
+
+    /**
+     * 使用 replace 方法设置 Fragment
+     *
+     * @param containerViewId
+     * @param fragment
+     */
+    protected void setFragmentOfReplace(@NonNull int containerViewId, AbsBaseFragment fragment, Bundle bundle) {
+        if (bundle != null) {
+            fragment.setArguments(bundle);
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(containerViewId, fragment)
+                .commit();
+    }
+
+    /**
+     * 使用 add 方法添加 Fragment
+     *
+     * @param containerViewId
+     * @param fragment
+     * @param tag
+     */
+    protected void setFragmentOfAdd(@NonNull int containerViewId, AbsBaseFragment fragment, String tag) {
+        setFragmentOfAdd(containerViewId, fragment, null, tag, false);
+    }
+
+
+    /**
+     * 使用 add 方法添加 Fragment
+     *
+     * @param containerViewId
+     * @param fragment
+     * @param tag
+     */
+    protected void setFragmentOfAdd(@NonNull int containerViewId, AbsBaseFragment fragment, String tag, boolean showAnim) {
+        setFragmentOfAdd(containerViewId, fragment, null, tag, showAnim);
+    }
+
+
+    /**
+     * 为Activity中的容器设置Fragment
+     *
+     * @param containerViewId
+     * @param fragment
+     * @param bundle
+     * @param tag
+     */
+    protected void setFragmentOfAdd(@NonNull int containerViewId, AbsBaseFragment fragment, Bundle bundle, String tag, boolean showAnim) {
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        transaction.addToBackStack(null);
+
+        if(showAnim){
+            transaction.setCustomAnimations(R.animator.fragment_slide_right_enter, R.animator.fragment_slide_right_exit, R.animator.fragment_slide_right_enter, R.animator.fragment_slide_right_exit);
+        }
+
+        //注意setCustomAnimations()方法必须在 add、remove、replace 调用之前被设置，否则不起作用。
+        if (bundle != null) {
+            fragment.setArguments(bundle);
+        }
+
+        transaction.add(containerViewId, fragment, tag);
+        transaction.commit();
     }
 }

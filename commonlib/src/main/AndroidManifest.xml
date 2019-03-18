@@ -16,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".ui.BindingActivity"></activity>
+        <activity android:name=".ABCActivity" />
+        <activity android:name=".TActivity" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".ui.BindingActivity" />
         <activity android:name=".ui.DemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
